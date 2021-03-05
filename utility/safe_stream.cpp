@@ -5,41 +5,96 @@
 #include "safe_stream.h"
 
 SafeStream::SafeStream() {
-
+    this->ifile_opened = false;
+    this->ofile_opened = false;
+    this->index = 0;
 }
 
 SafeStream::~SafeStream() {
-
+    this->Close();
 }
 
 int SafeStream::OpenRead(const std::string &path) {
+    bool read_from_stdin =  (path.size() == 0) || (strcmp(&path[0], "-") == 0) ;
+    if (this->ifile_opened) CloseInput();
+
+    if (read_from_stdin){
+        this->istream = &std::cin;
+    } else{
+        ifile.open(path, std::fstream::in | std::ios_base::binary);
+        if (!this->ifile.good()){
+            std::cerr<<"failed to open the input stream"<<std::endl;
+            return 1;
+        }
+        this->istream = &ifile;
+        this->ifile_opened = true;
+    }
     return 0;
 }
 
 int SafeStream::OpenWrite(const std::string &path) {
+    bool write_to_stdout = (path.size() == 0) || (strcmp(&path[0], "-") == 0) ;
+    if (this->ofile_opened) CloseOutput();
+
+    if (write_to_stdout){
+        this->ostream = &std::cout;
+    } else {
+        ofile.open(path, std::fstream::out);
+        if (!ofile.good()){
+            std::cerr<<"failed to open the output stream"<<std::endl;
+            return 1;
+        }
+        this->ostream = &ofile;
+        this->ofile_opened = true;
+    }
+
     return 0;
 }
 
 unsigned int SafeStream::Read(char *buffer, unsigned int index, size_t size) {
-    return 0;
+    if (this->EoF()) this->istream->clear();
+    unsigned int s = 0;
+    // seek index relative to beginning of file
+    istream->seekg(index, std::istream::beg);
+    while (s < size && istream->read(buffer, 1)){
+        s++;
+    }
+
+    return s;
+}
+
+unsigned int SafeStream::Read(char *buffer, size_t size) {
+    unsigned int read_c = this->Read(buffer, this->index, size);
+    this->index += read_c;
+    return read_c;
 }
 
 int SafeStream::Write(char *buffer, size_t size) {
+    std::unique_lock<std::mutex> lock(this->m);
+    this->ostream->write(buffer, size);
     return 0;
 }
 
 bool SafeStream::EoF() {
-    return false;
+    if (!this->ifile_opened) return true;
+    return this->istream->eof();
 }
 
 void SafeStream::Close() {
-
+    this->CloseInput();
+    this->CloseOutput();
 }
 
 void SafeStream::CloseOutput() {
-
+    if (this->ofile_opened){
+        this->ofile.close();
+        this->ofile_opened = false;
+    }
 }
 
 void SafeStream::CloseInput() {
-
+    if (this->ifile_opened){
+        this->ifile.close();
+        this->ifile_opened = false;
+    }
 }

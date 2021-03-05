@@ -12,6 +12,7 @@
 
 class SafeStream {
     private:
+    unsigned int index;
     std::mutex m;
     std::istream*  istream;
     std::ostream* ostream;
@@ -41,6 +42,12 @@ class SafeStream {
     //POS returns number of bytes read if s
     // if the return value is less than size, then EoF was reached
     unsigned int Read(char* buffer, unsigned int index, size_t size);
+
+    //PRE reads from a previously successfully opened istream
+    //starting from last read position using this method
+    //POS returns number of bytes read if s
+    // if the return value is less than size, then EoF was reached
+    unsigned int Read(char* buffer, size_t size);
 
     //PRE writes to a previously successfully opened istream
     //POS 0 if s, 1 if not
