@@ -35,9 +35,13 @@ class SafeStream {
     //open in std::in mode
     int OpenRead();
 
-    int operator<<(char* c);
+    SafeStream& operator<<(const std::string& c);
 
-    size_t operator>>(char* c);
+    SafeStream& operator<<(int i);
+
+    SafeStream& operator<<(char* c);
+
+    SafeStream& operator>>(char* c);
 
     //PRE attemps to open the specified ostream
     //POS 0 if successful

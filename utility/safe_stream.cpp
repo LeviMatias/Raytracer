@@ -109,16 +109,27 @@ int SafeStream::OpenWrite() {
     return this->OpenWrite("");
 }
 
-int SafeStream::operator<<(char *c) {
-    while (*c) {
+SafeStream& SafeStream::operator<<(const std::string& s) {
+    *(this->ostream) << s;
+    return *this;
+}
+
+SafeStream& SafeStream::operator<<(char* c) {
+    while (*c){
         this->Write(c, 1);
         c++;
     }
-    return 0;
+    return *this;
 }
 
-size_t SafeStream::operator>>(char *c) {
+
+SafeStream& SafeStream::operator>>(char *c) {
     size_t r = 0;
     while (this->Read(c, 1)) r++;
-    return r;
+    return *this;
+}
+
+SafeStream& SafeStream::operator<<(int i) {
+    *(this->ostream) << i;
+    return *this;
 }
