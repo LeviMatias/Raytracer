@@ -39,6 +39,8 @@ class SafeStream {
 
     SafeStream& operator<<(int i);
 
+    SafeStream& operator<<(char c);
+
     SafeStream& operator<<(char* c);
 
     SafeStream& operator>>(char* c);

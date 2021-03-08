@@ -6,10 +6,10 @@ int main() {
     const int img_h = 256;
 
     //add image header
-    SafeStream stream;
-    stream.OpenWrite("image.ppm");
+    SafeStream out;
+    out.OpenWrite("image.ppm");
 
-    stream << "P3\n" << img_w << ' ' << img_h << "\n255\n";;
+    out << "P3\n" << img_w << ' ' << img_h << "\n255\n";;
 
     for (short int j = img_h-1; j >= 0; j--){
         for (short int i = 0; i < img_w; i++){
@@ -21,7 +21,7 @@ int main() {
             int ig = static_cast<int>(255.999 * g);
             int ib = static_cast<int>(255.999 * b);
 
-            std::cout << ir << ' ' << ig << ' ' << ib << '\n';
+            out << ir << ' ' << ig << ' ' << ib << '\n';
         }
     }
 

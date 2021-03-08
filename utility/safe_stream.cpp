@@ -133,3 +133,8 @@ SafeStream& SafeStream::operator<<(int i) {
     *(this->ostream) << i;
     return *this;
 }
+
+SafeStream &SafeStream::operator<<(char c) {
+    *(this->ostream) << c;
+    return *this;
+}
