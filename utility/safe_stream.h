@@ -20,10 +20,10 @@ class SafeStream {
     std::fstream ifile;
     std::fstream ofile;
 
+    public:
     bool ifile_opened;
     bool ofile_opened;
 
-    public:
     SafeStream();
     ~SafeStream();
 
@@ -32,10 +32,20 @@ class SafeStream {
     //if there already was an ifile open, it closes it
     int OpenRead(const std::string& path);
 
+    //open in std::in mode
+    int OpenRead();
+
+    int operator<<(char* c);
+
+    size_t operator>>(char* c);
+
     //PRE attemps to open the specified ostream
     //POS 0 if successful
     //if there already was an ofile open, it closes it
     int OpenWrite(const std::string& path);
+
+    //open in std::out mode
+    int OpenWrite();
 
     //PRE reads from a previously successfully opened istream
     //starting from index position in the file

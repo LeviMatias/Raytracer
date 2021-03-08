@@ -15,7 +15,7 @@ SafeStream::~SafeStream() {
 }
 
 int SafeStream::OpenRead(const std::string &path) {
-    bool read_from_stdin =  (path.size() == 0) || (strcmp(&path[0], "-") == 0) ;
+    bool read_from_stdin =  (path.empty() || strcmp(&path[0], "-") == 0) ;
     if (this->ifile_opened) CloseInput();
 
     if (read_from_stdin){
@@ -34,7 +34,7 @@ int SafeStream::OpenRead(const std::string &path) {
 }
 
 int SafeStream::OpenWrite(const std::string &path) {
-    bool write_to_stdout = (path.size() == 0) || (strcmp(&path[0], "-") == 0) ;
+    bool write_to_stdout = (path.empty() || strcmp(&path[0], "-") == 0) ;
     if (this->ofile_opened) CloseOutput();
 
     if (write_to_stdout){
@@ -52,12 +52,12 @@ int SafeStream::OpenWrite(const std::string &path) {
     return 0;
 }
 
-unsigned int SafeStream::Read(char *buffer, unsigned int index, size_t size) {
+unsigned int SafeStream::Read(char *buffer, unsigned int i, size_t size) {
     if (this->EoF()) this->istream->clear();
     unsigned int s = 0;
     // seek index relative to beginning of file
     //dont seekg in std::out
-    if (ofile_opened) istream->seekg(index, std::istream::beg);
+    if (ofile_opened) istream->seekg(i, std::istream::beg);
     while (s < size && istream->read(buffer, 1)){
         s++;
     }
@@ -99,4 +99,26 @@ void SafeStream::CloseInput() {
         this->ifile.close();
         this->ifile_opened = false;
     }
+}
+
+int SafeStream::OpenRead() {
+    return this->OpenRead("");
+}
+
+int SafeStream::OpenWrite() {
+    return this->OpenWrite("");
+}
+
+int SafeStream::operator<<(char *c) {
+    while (*c) {
+        this->Write(c, 1);
+        c++;
+    }
+    return 0;
+}
+
+size_t SafeStream::operator>>(char *c) {
+    size_t r = 0;
+    while (this->Read(c, 1)) r++;
+    return r;
 }

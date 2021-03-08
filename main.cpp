@@ -1,10 +1,14 @@
 #include <iostream>
+#include "utility/safe_stream.h"
 
 int main() {
     const int img_w = 256;
     const int img_h = 256;
 
     //add image header
+    SafeStream stream;
+    stream.OpenRead();
+
     std::cout << "P3\n" << img_w << ' ' << img_h << "\n255\n";
 
     for (short int j = img_h-1; j >= 0; j--){
