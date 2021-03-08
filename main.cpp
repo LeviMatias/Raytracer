@@ -1,5 +1,6 @@
 #include <iostream>
 #include "utility/safe_stream.h"
+#include "utility/vec3.h"
 
 int main() {
     const int img_w = 256;
@@ -12,6 +13,7 @@ int main() {
     out << "P3\n" << img_w << ' ' << img_h << "\n255\n";;
 
     for (short int j = img_h-1; j >= 0; j--){
+        std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
         for (short int i = 0; i < img_w; i++){
             double r = double(i) / (img_w - 1);
             double g = double(j) / (img_h - 1);
@@ -24,6 +26,10 @@ int main() {
             out << ir << ' ' << ig << ' ' << ib << '\n';
         }
     }
+
+    vec3 v(1, 10, 0.5);
+    vec3 u(1, 2, 3);
+    vec3 w = u.unit();
 
     return 0;
 }

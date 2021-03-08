@@ -35,16 +35,6 @@ class SafeStream {
     //open in std::in mode
     int OpenRead();
 
-    SafeStream& operator<<(const std::string& c);
-
-    SafeStream& operator<<(int i);
-
-    SafeStream& operator<<(char c);
-
-    SafeStream& operator<<(char* c);
-
-    SafeStream& operator>>(char* c);
-
     //PRE attemps to open the specified ostream
     //POS 0 if successful
     //if there already was an ofile open, it closes it
@@ -83,6 +73,17 @@ class SafeStream {
     //PRE a file was opened for input
     //POS closes the file
     void CloseInput();
+
+
+    SafeStream& operator<<(const std::string& c);
+
+    SafeStream& operator<<(int i);
+
+    SafeStream& operator<<(char c);
+
+    SafeStream& operator<<(char* c);
+
+    SafeStream& operator>>(char* c);
 };
 
 
