@@ -1,6 +1,10 @@
 #include <iostream>
 #include "utility/safe_stream.h"
 #include "utility/vec3.h"
+#include "utility/color_helper.h"
+#include "utility/ray.h"
+
+
 
 int main() {
     const int img_w = 256;
@@ -15,21 +19,10 @@ int main() {
     for (short int j = img_h-1; j >= 0; j--){
         std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
         for (short int i = 0; i < img_w; i++){
-            double r = double(i) / (img_w - 1);
-            double g = double(j) / (img_h - 1);
-            double b = 0.25;
-
-            int ir = static_cast<int>(255.999 * r);
-            int ig = static_cast<int>(255.999 * g);
-            int ib = static_cast<int>(255.999 * b);
-
-            out << ir << ' ' << ig << ' ' << ib << '\n';
+            color pixel_color(double(i) / (img_w - 1), double(j) / (img_h - 1), 0.25);
+            write_color(out, pixel_color);
         }
     }
-
-    vec3 v(1, 10, 0.5);
-    vec3 u(1, 2, 3);
-    vec3 w = u.unit();
 
     return 0;
 }

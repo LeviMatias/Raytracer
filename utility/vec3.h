@@ -32,7 +32,7 @@ public:
         return e[0]*e[0] + e[1]*e[1] + e[2]*e[2];
     }
 
-    inline vec3 unit(){
+    inline vec3 unit() const{
         return *this/this->length();
     }
 
@@ -92,7 +92,7 @@ public:
     }
 };
 
-using poin3 = vec3;
+using point3 = vec3;
 using color = vec3;
 
 #endif //RAYTRACER_VEC3_H
