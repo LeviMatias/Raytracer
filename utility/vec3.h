@@ -36,7 +36,7 @@ public:
         return *this/this->length();
     }
 
-    inline double dot(const vec3 &v){
+    inline double dot(const vec3 &v) const{
         return e[0] * v.e[0]
                + e[1] * v.e[1]
                + e[2] * v.e[2];
