@@ -27,8 +27,10 @@ double hit_sphere(const point3& center, double radius, const ray& r) {
     auto c = oc.dot(oc) - radius*radius;
     auto discriminant = b*b - 4*a*c;
     if (discriminant < 0) {
-        return -1.0; //no root
+        return -1.0; //no (real) root
     } else {
+        // minus = front outer root
+        // plus = back outer root
         return (-b - sqrt(discriminant) ) / (2.0*a);
     }
 }
