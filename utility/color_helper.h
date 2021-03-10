@@ -22,16 +22,16 @@ double hit_sphere(const point3& center, double radius, const ray& r) {
 
     // solve the quadratic to find whether there is a root(s)
     // for given ray
-    auto a = r.dir.dot( r.dir );
-    auto b = 2.0 * oc.dot(r.dir);
-    auto c = oc.dot(oc) - radius*radius;
-    auto discriminant = b*b - 4*a*c;
+    auto a = r.direction().length_squared();
+    auto half_b = oc.dot(r.direction()); //half b to simplify eq
+    auto c = oc.length_squared() - radius*radius;
+    auto discriminant = half_b*half_b - a*c;
     if (discriminant < 0) {
         return -1.0; //no (real) root
     } else {
         // minus = front outer root
         // plus = back outer root
-        return (-b - sqrt(discriminant) ) / (2.0*a);
+        return (-half_b - sqrt(discriminant) ) / a;
     }
 }
 
