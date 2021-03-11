@@ -1,9 +1,11 @@
 #include <iostream>
+
 #include "utility/safe_stream.h"
-#include "utility/vec3.h"
+#include "utility/constants.h"
 #include "utility/color_helper.h"
-#include "utility/ray.h"
+
 #include "model/Camera.h"
+#include "model/Scene.h"
 
 
 
@@ -13,6 +15,11 @@ int main() {
     img.aspect_ratio = 16.0/9.0;
     img.w = 400;
     img.h = static_cast<int>(img.w / img.aspect_ratio);
+
+    // World
+    Scene world;
+    world.add(make_shared<Sphere>(point3(0,0,-1), 0.5));
+    world.add(make_shared<Sphere>(point3(0,-100.5,-1), 100));
 
     // Camera
     Camera cam(2.0, img.aspect_ratio, 1.0);
@@ -29,7 +36,7 @@ int main() {
             double v = double(j) / (img.h-1);
             ray r = cam.ray_to(u, v);
 
-            color pixel_color = ray_color(r);
+            color pixel_color = ray_color(r, world);
             write_color(out, pixel_color);
         }
     }
