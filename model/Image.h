@@ -23,6 +23,10 @@ public:
 
     void WriteColor(color pixel_color);
 
+    //will probably have to write to a buffer instead of directly
+    //if wanted to implement
+    void WriteColorAt(color pixel_color, int i);
+
 private:
     SafeStream out;
 };
