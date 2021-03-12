@@ -8,13 +8,6 @@
 #include "../utility/vec3.h"
 #include "../utility/ray.h"
 
-struct image {
-    double aspect_ratio;
-    int h;
-    int w;
-};
-
-
 class Camera {
 public:
     double viewport_height;

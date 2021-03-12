@@ -1,20 +1,17 @@
 #include <iostream>
 
 #include "utility/safe_stream.h"
-#include "utility/constants.h"
+#include "utility/Utility.h"
 #include "utility/color_helper.h"
 
 #include "model/Camera.h"
 #include "model/Scene.h"
-
+#include "model/Image.h"
 
 
 int main() {
     //image
-    struct image img{};
-    img.aspect_ratio = 16.0/9.0;
-    img.w = 400;
-    img.h = static_cast<int>(img.w / img.aspect_ratio);
+    Image img(16.0/9.0, 400);
 
     // World
     Scene world;
@@ -37,7 +34,7 @@ int main() {
             ray r = cam.GetRay(u, v);
 
             color pixel_color = ray_color(r, world);
-            write_color(out, pixel_color);
+            img.WriteColor(pixel_color);
         }
     }
     std::cerr << "\nDone.\n";

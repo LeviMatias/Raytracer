@@ -2,8 +2,8 @@
 // Created by Matias Ignacio Levi Fernandez on 11/03/2021.
 //
 
-#ifndef RAYTRACER_CONSTANTS_H
-#define RAYTRACER_CONSTANTS_H
+#ifndef RAYTRACER_UTILITY_H
+#define RAYTRACER_UTILITY_H
 
 #include <cmath>
 #include <limits>
@@ -21,7 +21,8 @@ using std::sqrt;
 #define INF std::numeric_limits<double>::infinity()
 #define PI 3.1415926535897932385;
 
-// Utility Functions
+// Utility macros
+#define CLAMP (x, min, max) (if (x > max) return max; if (x < min) return min; return x)
 
 #define DEG2RAD (deg) (deg * PI / 180.0)
 
@@ -30,4 +31,4 @@ using std::sqrt;
 #include "ray.h"
 #include "vec3.h"
 
-#endif //RAYTRACER_CONSTANTS_H
+#endif //RAYTRACER_UTILITY_H
