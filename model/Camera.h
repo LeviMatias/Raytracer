@@ -37,7 +37,7 @@ public:
         this->lower_left_corner = origin - horizontal/2 - vertical/2 - vec3(0, 0, focal_length);
     }
 
-    ray ray_to(double x, double y) const;
+    ray GetRay(double x, double y) const;
 };
 
 

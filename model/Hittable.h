@@ -11,13 +11,13 @@
 struct hit_record {
     point3 p;
     vec3 normal;
-    // ray = orig + dir * t
+    // ray = origin + direction * t
     // t record the t-value for the hit_record
     double t{};
     bool front_face;
 
     inline void set_face_normal(const ray& r, const vec3& outward_normal) {
-        front_face = r.direction().dot(outward_normal) < 0;
+        front_face = r.direction.dot(outward_normal) < 0;
         //hit normal always points contrary to ray
         normal = front_face ? outward_normal :-outward_normal;
     }

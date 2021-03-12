@@ -4,6 +4,6 @@
 
 #include "Camera.h"
 
-ray Camera::ray_to(double x, double y) const {
+ray Camera::GetRay(double x, double y) const {
     return {origin, lower_left_corner + x*horizontal + y*vertical - origin};
 }

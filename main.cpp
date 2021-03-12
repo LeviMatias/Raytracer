@@ -34,7 +34,7 @@ int main() {
         for (int i = 0; i < img.w; i++){
             double u = double(i) / (img.w-1);
             double v = double(j) / (img.h-1);
-            ray r = cam.ray_to(u, v);
+            ray r = cam.GetRay(u, v);
 
             color pixel_color = ray_color(r, world);
             write_color(out, pixel_color);

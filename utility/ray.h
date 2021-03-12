@@ -8,17 +8,14 @@
 
 class ray {
 public:
-    vec3 dir;
-    point3 orig;
+    vec3 direction;
+    point3 origin;
 
-    ray() {};
-    ray(const point3& orig, const vec3& dir) : orig(orig), dir(dir) {};
+    ray() = default;;
+    ray(const point3& orig, const vec3& dir) : origin(orig), direction(dir) {};
 
-    vec3 direction() const { return dir;}
-    vec3 origin() const { return orig;}
-
-    point3 at(double t) const{
-        return orig + dir*t;
+    point3 At(double t) const{
+        return origin + direction * t;
     }
 
 };

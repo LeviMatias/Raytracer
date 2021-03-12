@@ -11,17 +11,17 @@ Sphere::Sphere(point3 center, double r) {
 
 bool Sphere::hit(const ray &r, double t_min, double t_max, hit_record &rec) const {
     // C = sphere center
-    // (ray.at(t) - C) . (ray.at(t) - C) = r**2
-    // (orig + t*dir - C) . (orig + t*dir - C) = r**2
+    // (ray.at(t) - C) . (ray.At(t) - C) = r**2
+    // (origin + t*direction - C) . (origin + t*direction - C) = r**2
     // the sphere is hit for t values that satisfy above eq
 
-    vec3 oc = r.origin() - center;
+    vec3 oc = r.origin - center;
 
     // solve the quadratic to find whether there is a root(s)
     // for given ray
     // we can use half b to simplify eq
-    auto a = r.direction().length_squared();
-    auto half_b = oc.dot(r.direction());
+    auto a = r.direction.length_squared();
+    auto half_b = oc.dot(r.direction);
     auto c = oc.length_squared() - radius*radius;
     auto discriminant = half_b*half_b - a*c;
 
@@ -38,7 +38,7 @@ bool Sphere::hit(const ray &r, double t_min, double t_max, hit_record &rec) cons
     }
 
     rec.t = root;
-    rec.p = r.at(rec.t);
+    rec.p = r.At(rec.t);
     //normal pointing outwards from center
     vec3 outward_normal = (rec.p - center) / radius;
     rec.set_face_normal(r, outward_normal);
