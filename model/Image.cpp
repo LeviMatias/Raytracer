@@ -18,4 +18,6 @@ Image::Image(const std::string& imgname, double aspect_ratio, int w) {
     this->aspect_ratio = aspect_ratio;
     this->w = w;
     this->h = static_cast<int>(w / aspect_ratio);
+
+    out << "P3\n" << w << " " << this->h << "\n255\n";
 }

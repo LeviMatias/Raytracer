@@ -7,8 +7,9 @@
 #include "model/Camera.h"
 #include "model/Scene.h"
 #include "model/Image.h"
+#include "utility/Random.h"
 
-
+#define SAMPLES 100
 int main() {
     //image
     Image img(16.0/9.0, 400);
@@ -29,12 +30,14 @@ int main() {
     for (int j = img.h-1; j >= 0; j--){
         std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
         for (int i = 0; i < img.w; i++){
-            double u = double(i) / (img.w-1);
-            double v = double(j) / (img.h-1);
-            ray r = cam.GetRay(u, v);
-
-            color pixel_color = ray_color(r, world);
-            img.WriteColor(pixel_color);
+            color pixel_color(0, 0, 0);
+            for (int s = 0; s < SAMPLES; ++s) {
+                auto u = (i + Random::NextNumber()) / (img.w-1);
+                auto v = (j + Random::NextNumber()) / (img.h-1);
+                ray r = cam.GetRay(u, v);
+                pixel_color += ray_color(r, world);
+            }
+            img.WriteColor(pixel_color/SAMPLES);
         }
     }
     std::cerr << "\nDone.\n";

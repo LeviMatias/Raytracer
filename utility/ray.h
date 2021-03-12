@@ -11,7 +11,7 @@ public:
     vec3 direction;
     point3 origin;
 
-    ray() = default;;
+    ray() = default;
     ray(const point3& orig, const vec3& dir) : origin(orig), direction(dir) {};
 
     point3 At(double t) const{

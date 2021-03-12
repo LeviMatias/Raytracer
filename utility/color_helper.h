@@ -12,13 +12,6 @@
 #define LIGHT_BLUE color(0.5, 0.7, 1.0)
 #define WHITE color(1.0, 1.0, 1.0)
 
-void write_color(SafeStream &out, color pixel_color) {
-    // Write the translated [0,255] value of each color component.
-    out << static_cast<int>(255.999 * pixel_color.x()) << ' '
-        << static_cast<int>(255.999 * pixel_color.y()) << ' '
-        << static_cast<int>(255.999 * pixel_color.z()) << '\n';
-}
-
 color ray_color(const ray& r, const Hittable& world) {
     hit_record rec;
     if (world.hit(r, 0, INF, rec)) {
