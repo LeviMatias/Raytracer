@@ -4,17 +4,17 @@
 
 #ifndef RAYTRACER_RAY_H
 #define RAYTRACER_RAY_H
-#include "vec3.h"
+#include "Vec3.h"
 
-class ray {
+class Ray {
 public:
-    vec3 direction;
-    point3 origin;
+    Vec3 direction;
+    Point3 origin;
 
-    ray() = default;
-    ray(const point3& orig, const vec3& dir) : origin(orig), direction(dir) {};
+    Ray() = default;
+    Ray(const Point3& orig, const Vec3& dir) : origin(orig), direction(dir) {};
 
-    point3 At(double t) const{
+    Point3 At(double t) const{
         return origin + direction * t;
     }
 

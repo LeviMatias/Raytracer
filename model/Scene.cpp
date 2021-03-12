@@ -4,7 +4,7 @@
 
 #include "Scene.h"
 
-bool Scene::hit(const ray &r, double t_min, double t_max, hit_record &rec) const {
+bool Scene::hit(const Ray &r, double t_min, double t_max, hit_record &rec) const {
     hit_record aux_record;
     bool hit_anything = false;
     auto closest_so_far = t_max;

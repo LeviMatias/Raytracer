@@ -16,8 +16,8 @@ int main() {
 
     // World
     Scene world;
-    world.add(make_shared<Sphere>(point3(0,0,-1), 0.5));
-    world.add(make_shared<Sphere>(point3(0,-100.5,-1), 100));
+    world.add(make_shared<Sphere>(Point3(0, 0, -1), 0.5));
+    world.add(make_shared<Sphere>(Point3(0, -100.5, -1), 100));
 
     // Camera
     Camera cam(2.0, img.aspect_ratio, 1.0);
@@ -30,11 +30,11 @@ int main() {
     for (int j = img.h-1; j >= 0; j--){
         std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
         for (int i = 0; i < img.w; i++){
-            color pixel_color(0, 0, 0);
+            Color pixel_color(0, 0, 0);
             for (int s = 0; s < SAMPLES; ++s) {
                 auto u = (i + Random::NextNumber()) / (img.w-1);
                 auto v = (j + Random::NextNumber()) / (img.h-1);
-                ray r = cam.GetRay(u, v);
+                Ray r = cam.GetRay(u, v);
                 pixel_color += ray_color(r, world);
             }
             img.WriteColor(pixel_color/SAMPLES);

@@ -4,8 +4,8 @@
 
 #include "Image.h"
 
-void Image::WriteColor(color pixel_color) {
-    // Write the translated [0,255] value of each color component.
+void Image::WriteColor(Color pixel_color) {
+    // Write the translated [0,255] value of each Color component.
     out << static_cast<int>(255.999 * pixel_color.x()) << ' '
         << static_cast<int>(255.999 * pixel_color.y()) << ' '
         << static_cast<int>(255.999 * pixel_color.z()) << '\n';
@@ -22,5 +22,5 @@ Image::Image(const std::string& imgname, double aspect_ratio, int w) {
     out << "P3\n" << w << " " << this->h << "\n255\n";
 }
 
-void Image::WriteColorAt(color pixel_color, int i) {
+void Image::WriteColorAt(Color pixel_color, int i) {
 }

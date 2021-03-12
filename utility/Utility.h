@@ -28,7 +28,7 @@ using std::sqrt;
 
 // Common Headers
 
-#include "ray.h"
-#include "vec3.h"
+#include "Ray.h"
+#include "Vec3.h"
 
 #endif //RAYTRACER_UTILITY_H

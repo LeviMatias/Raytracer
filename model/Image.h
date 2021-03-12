@@ -7,7 +7,7 @@
 
 
 #include "../utility/safe_stream.h"
-#include "../utility/vec3.h"
+#include "../utility/Vec3.h"
 
 #define IMAGE_NAME "image.ppm"
 
@@ -21,11 +21,11 @@ public:
 
     Image(double aspect_ratio, int w);
 
-    void WriteColor(color pixel_color);
+    void WriteColor(Color pixel_color);
 
     //will probably have to write to a buffer instead of directly
     //if wanted to implement
-    void WriteColorAt(color pixel_color, int i);
+    void WriteColorAt(Color pixel_color, int i);
 
 private:
     SafeStream out;

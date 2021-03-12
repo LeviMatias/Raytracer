@@ -4,18 +4,18 @@
 
 #include "Sphere.h"
 
-Sphere::Sphere(point3 center, double r) {
+Sphere::Sphere(Point3 center, double r) {
     this->center = center;
     radius = r;
 }
 
-bool Sphere::hit(const ray &r, double t_min, double t_max, hit_record &rec) const {
+bool Sphere::hit(const Ray &r, double t_min, double t_max, hit_record &rec) const {
     // C = sphere center
     // (ray.at(t) - C) . (ray.At(t) - C) = r**2
     // (origin + t*direction - C) . (origin + t*direction - C) = r**2
     // the sphere is hit for t values that satisfy above eq
 
-    vec3 oc = r.origin - center;
+    Vec3 oc = r.origin - center;
 
     // solve the quadratic to find whether there is a root(s)
     // for given ray
@@ -40,7 +40,7 @@ bool Sphere::hit(const ray &r, double t_min, double t_max, hit_record &rec) cons
     rec.t = root;
     rec.p = r.At(rec.t);
     //normal pointing outwards from center
-    vec3 outward_normal = (rec.p - center) / radius;
+    Vec3 outward_normal = (rec.p - center) / radius;
     rec.set_face_normal(r, outward_normal);
 
     return true;

@@ -10,12 +10,12 @@
 
 class Sphere: public Hittable {
 public:
-    point3 center;
+    Point3 center;
     double radius;
 
-    Sphere(point3 center, double r);
+    Sphere(Point3 center, double r);
 
-    virtual bool hit(const ray& r, double t_min, double t_max, hit_record& rec) const override;
+    virtual bool hit(const Ray& r, double t_min, double t_max, hit_record& rec) const override;
 
 };
 
