@@ -21,3 +21,6 @@ Image::Image(const std::string& imgname, double aspect_ratio, int w) {
 
     out << "P3\n" << w << " " << this->h << "\n255\n";
 }
+
+void Image::WriteColorAt(color pixel_color, int i) {
+}

@@ -57,7 +57,7 @@ unsigned int SafeStream::Read(char *buffer, unsigned int i, size_t size) {
     unsigned int s = 0;
     // seek index relative to beginning of file
     //dont seekg in std::out
-    if (ofile_opened) istream->seekg(i, std::istream::beg);
+    if (ifile_opened) istream->seekg(i, std::istream::beg);
     while (s < size && istream->read(buffer, 1)){
         s++;
     }
