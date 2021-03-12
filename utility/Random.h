@@ -5,14 +5,24 @@
 #ifndef RAYTRACER_RANDOM_H
 #define RAYTRACER_RANDOM_H
 
-#include <cstdlib>
-...
+#include <random>
 
-// Returns a random real in [0,1).
-#define RAND01 rand() / (RAND_MAX + 1.0)
+class Random {
+public:
+    inline static double NextNumber();
 
-// Returns a random real in [min,max).
-#define RAND (min, max) (min + (max-min)*RAND01)
+    inline static double NextNumber(double a, double b);
+};
+
+double Random::NextNumber() {
+    static std::uniform_real_distribution<double> distribution(0.0, 1.0);
+    static std::mt19937 generator;
+    return distribution(generator);
+}
+
+double Random::NextNumber(double a, double b) {
+    return Random::NextNumber() * (b - a) + a;
+}
 
 
 #endif //RAYTRACER_RANDOM_H
