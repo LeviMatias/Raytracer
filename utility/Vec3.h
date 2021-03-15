@@ -51,14 +51,6 @@ public:
         return {Random::NextNumber(min, max), Random::NextNumber(min, max), Random::NextNumber(min, max)};
     }
 
-    inline static Vec3 random_in_unit_sphere() {
-        while (true) {
-            auto p = Vec3::random(-1,1);
-            if (p.length_squared() >= 1) continue;
-            return p;
-        }
-    }
-
     // OPERATORS
 
     Vec3 operator-() const { return Vec3(-e[0], -e[1], -e[2]); }

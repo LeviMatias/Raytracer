@@ -6,9 +6,18 @@
 
 void Image::WriteColor(Color pixel_color) {
     // Write the translated [0,255] value of each Color component.
-    out << static_cast<int>(255.999 * pixel_color.x()) << ' '
-        << static_cast<int>(255.999 * pixel_color.y()) << ' '
-        << static_cast<int>(255.999 * pixel_color.z()) << '\n';
+    // Divide the color by the number of samples and gamma-correct for gamma=2.0.
+    auto r = pixel_color.x();
+    auto g = pixel_color.y();
+    auto b = pixel_color.z();
+
+    r = sqrt(r);
+    g = sqrt(g);
+    b = sqrt(b);
+
+    out << static_cast<int>(255.999 * r) << ' '
+        << static_cast<int>(255.999 * g) << ' '
+        << static_cast<int>(255.999 * b) << '\n';
 }
 
 Image::Image(double aspect_ratio, int w): Image(IMAGE_NAME, aspect_ratio, w) {}

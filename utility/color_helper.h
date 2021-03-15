@@ -25,7 +25,7 @@ Color ray_color(const Ray& r, const Hittable& world, int bounce) {
         double z = Random::NextNumber(-eq, eq);
 
         Point3 target = rec.p + rec.normal + Vec3(x, y, z);
-        return 0.90 * ray_color(Ray(rec.p, target - rec.p), world, ++bounce);
+        return 0.50 * ray_color(Ray(rec.p, target - rec.p), world, ++bounce);
     }
     Vec3 unit_direction = r.direction.unit();
     auto t = 0.5*(unit_direction.y() + 1.0);
