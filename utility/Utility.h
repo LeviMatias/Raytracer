@@ -15,11 +15,13 @@
 using std::shared_ptr;
 using std::make_shared;
 using std::sqrt;
+using std::sin;
+using std::cos;
 
 // Constants
 
 #define INF std::numeric_limits<double>::infinity()
-#define PI 3.1415926535897932385;
+#define PI 3.1415926535897932385
 
 // Utility macros
 #define CLAMP (x, min, max) (if (x > max) return max; if (x < min) return min; return x)

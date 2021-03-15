@@ -7,6 +7,7 @@
 
 #include <cmath>
 #include <iostream>
+#include "Random.h"
 
 #define COORDINATES 3
 
@@ -40,6 +41,22 @@ public:
         return e[0] * v.e[0]
                + e[1] * v.e[1]
                + e[2] * v.e[2];
+    }
+
+    inline static Vec3 random() {
+        return {Random::NextNumber(), Random::NextNumber(), Random::NextNumber()};
+    }
+
+    inline static Vec3 random(double min, double max) {
+        return {Random::NextNumber(min, max), Random::NextNumber(min, max), Random::NextNumber(min, max)};
+    }
+
+    inline static Vec3 random_in_unit_sphere() {
+        while (true) {
+            auto p = Vec3::random(-1,1);
+            if (p.length_squared() >= 1) continue;
+            return p;
+        }
     }
 
     // OPERATORS
