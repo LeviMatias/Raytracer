@@ -5,6 +5,13 @@
 #include "painter_thread.h"
 #include "../utility/Ray.h"
 
+PainterThread::PainterThread(Scene *w, Camera *c, Image *i, int offs) {
+    canvas = i;
+    cam = c;
+    offset = offs;
+    world = w;
+}
+
 void PainterThread::_run() {
     for (int j = canvas->h-1; j >= 0; j-= offset){
         std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
@@ -22,11 +29,25 @@ void PainterThread::_run() {
 }
 
 Color PainterThread::Ray2Color(const Ray& r) const {
+
+    return Ray2Color_rec(r, 0);
+}
+
+Color PainterThread::Ray2Color_rec(const Ray &r, int depth) const {
+    if (depth >= MAX_DEPTH ) return {};
+
     hit_record rec;
     if (world->hit(r, 0, INF, rec)) {
-        return 0.5 * (rec.normal + Color(1, 1, 1));
+        double x = Random::NextNumber(-1,1);
+        double s = cos((PI/2) * x);
+        double y = Random::NextNumber(-s, s);
+        double eq = sqrt(1 - x*x - y*y);
+        double z = Random::NextNumber(-eq, eq);
+
+        Point3 target = rec.p + rec.normal + Vec3(x, y, z);
+        return 0.50 * Ray2Color_rec(Ray(rec.p, target - rec.p), ++depth);
     }
     Vec3 unit_direction = r.direction.unit();
     auto t = 0.5*(unit_direction.y() + 1.0);
-    return (1.0-t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0);
+    return (1.0-t) * WHITE + t * LIGHT_BLUE;
 }

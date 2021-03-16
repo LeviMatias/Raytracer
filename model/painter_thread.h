@@ -14,22 +14,25 @@
 #include "Scene.h"
 
 #define STROKES 100
-#define LIGHT_BLUE color(0.5, 0.7, 1.0)
-#define WHITE color(1.0, 1.0, 1.0)
+#define MAX_DEPTH 25
+#define LIGHT_BLUE Color(0.5, 0.7, 1.0)
+#define WHITE Color(1.0, 1.0, 1.0)
 
 class PainterThread : public BaseThread {
 public:
-    Hittable* world;
+    Scene* world;
     Camera* cam;
     Image * canvas;
     int offset;
 
-    // PainterThread(Image* img);
+    PainterThread(Scene* w, Camera* c, Image* i, int offs);
 
 private:
     void _run() override;
 
     Color Ray2Color(const Ray& r) const;
+
+    Color Ray2Color_rec(const Ray& r, int depth) const;
 };
 
 

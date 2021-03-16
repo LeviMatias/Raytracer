@@ -8,6 +8,7 @@
 #include "model/Scene.h"
 #include "model/Image.h"
 #include "utility/Random.h"
+#include "model/Painter.h"
 
 #define SAMPLES 100
 int main() {
@@ -27,7 +28,10 @@ int main() {
     //add image header
     out << "P3\n" << img.w << ' ' << img.h << "\n255\n";;
 
-    for (int j = img.h-1; j >= 0; j--){
+    Painter da_vinci(&world, &cam);
+
+    da_vinci.Paint(&img);
+    /*for (int j = img.h-1; j >= 0; j--){
         std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
         for (int i = 0; i < img.w; i++){
             Color pixel_color(0, 0, 0);
@@ -40,6 +44,7 @@ int main() {
             img.WriteColor(pixel_color/SAMPLES);
         }
     }
+     */
     std::cerr << "\nDone.\n";
     return 0;
 }
