@@ -27,9 +27,27 @@ Image::Image(const std::string& imgname, double aspect_ratio, int w) {
     this->aspect_ratio = aspect_ratio;
     this->w = w;
     this->h = static_cast<int>(w / aspect_ratio);
+    buffer.reserve(w * h);
 
     out << "P3\n" << w << " " << this->h << "\n255\n";
 }
 
-void Image::WriteColorAt(Color pixel_color, int i) {
+void Image::WriteColorAt(Color col, int x, int y) {
+    int r = static_cast<int>(255.999 * sqrt(col.x()));
+    int g = static_cast<int>(255.999 * sqrt(col.y()));
+    int b = static_cast<int>(255.999 * sqrt(col.z()));
+
+    buffer.emplace(buffer.begin() + w * y + x, r, g, b);
+}
+
+void Image::Flush() {
+    for (auto pix = buffer.end(); pix != buffer.begin(); pix--){
+        out << pix->r << ' '
+            << pix->g << ' '
+            << pix->b << '\n';
+    }
+
+    for (auto &pix : buffer){
+
+    }
 }

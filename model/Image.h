@@ -11,6 +11,17 @@
 
 #define IMAGE_NAME "image.ppm"
 
+struct pixel_rgb{
+    int r, g, b;
+
+    pixel_rgb(int r, int g, int b)
+    : r(r), g(g), b(b) {};
+
+    pixel_rgb()
+    : r(0), g(0), b(0) {};
+};
+
+
 class Image {
 public:
     double aspect_ratio;
@@ -23,12 +34,13 @@ public:
 
     void WriteColor(Color pixel_color);
 
-    //will probably have to write to a buffer instead of directly
-    //if wanted to implement
-    void WriteColorAt(Color pixel_color, int i);
+    void WriteColorAt(Color pixel_color, int x, int y);
+
+    void Flush();
 
 private:
     SafeStream out;
+    std::vector<pixel_rgb> buffer;
 };
 
 

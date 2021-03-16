@@ -2,8 +2,8 @@
 // Created by Matias Ignacio Levi Fernandez on 12/03/2021.
 //
 
-#ifndef RAYTRACER_PAINTER_THREAD_H
-#define RAYTRACER_PAINTER_THREAD_H
+#ifndef RAYTRACER_DRAW_THREAD_H
+#define RAYTRACER_DRAW_THREAD_H
 
 
 #include "../utility/BaseThread.h"
@@ -18,14 +18,14 @@
 #define LIGHT_BLUE Color(0.5, 0.7, 1.0)
 #define WHITE Color(1.0, 1.0, 1.0)
 
-class PainterThread : public BaseThread {
+class DrawThread : public BaseThread {
 public:
     Scene* world;
     Camera* cam;
     Image * canvas;
-    int offset;
+    int offset, offset_start;
 
-    PainterThread(Scene* w, Camera* c, Image* i, int offs);
+    DrawThread(Scene* w, Camera* c, Image* i, int start, int offset);
 
 private:
     void _run() override;
@@ -36,4 +36,4 @@ private:
 };
 
 
-#endif //RAYTRACER_PAINTER_THREAD_H
+#endif //RAYTRACER_DRAW_THREAD_H
