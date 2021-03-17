@@ -25,7 +25,7 @@ void Camera::Draw(Scene &scene, Image &canvas) {
 
     for (int i=0; i < N_DRAW_THREADS; i++){
         t.emplace_back(&scene, this, &canvas, i, N_DRAW_THREADS);
-        t[i].run();
+        t.back().run();
     }
 
     for (int i=0; i < N_DRAW_THREADS; i++){

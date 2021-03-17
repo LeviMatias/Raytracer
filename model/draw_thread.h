@@ -25,14 +25,14 @@ public:
     Image * canvas;
     int offset, offset_start;
 
-    DrawThread(Scene* w, Camera* c, Image* i, int start, int offset);
+    explicit DrawThread(Scene* w, Camera* c, Image* i, int start, int offset);
 
 private:
     void _run() override;
 
-    Color Ray2Color(const Ray& r) const;
+    Color _ray2Color(const Ray& r) const;
 
-    Color Ray2Color_rec(const Ray& r, int depth) const;
+    Color _ray2Color_rec(const Ray& r, int depth) const;
 };
 
 
