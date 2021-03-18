@@ -14,13 +14,11 @@ DrawThread::DrawThread(Scene *w, Camera *c, Image *i, int start, int ofs) {
 }
 
 void DrawThread::_run() {
-    std::cerr << "\rThread working: " << offset_start << ' ' << std::endl;
-
     for (int i = offset_start; i < canvas->h * canvas->w; i += offset){
         Color pixel_color(0, 0, 0);
         int y = static_cast<int>(i / canvas->w);
         int x = i - canvas->w * y;
-        //std::cerr << "\rStatus: " << canvas->h - y << ' ' << std::flush;
+
         for (int s = 0; s < STROKES; ++s) {
             auto u = (x + Random::NextNumber()) / (canvas->w-1);
             auto v = (y + Random::NextNumber()) / (canvas->h-1);

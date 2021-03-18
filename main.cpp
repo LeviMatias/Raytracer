@@ -6,8 +6,12 @@
 #include "model/Camera.h"
 #include "model/Scene.h"
 #include "model/Image.h"
+#include "utility/stopwatch.h"
 
 int main() {
+    Stopwatch t;
+    t.reset();
+
     //image
     Image img(16.0/9.0, 400);
 
@@ -20,7 +24,8 @@ int main() {
     Camera cam(2.0, img.aspect_ratio, 1.0);
 
     cam.Draw(world, img);
-    std::cerr << "\nDone.\n";
+
+    std::cerr << "\nDone in " << t.diff() << " seconds"<<std::endl;
 
     img.Flush();
 
