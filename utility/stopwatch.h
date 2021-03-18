@@ -6,16 +6,14 @@
 #define RAYTRACER_STOPWATCH_H
 
 
-//TODO use chrono
-
-#include <ctime>
+#include <chrono>
 
 #define SEC_TO_MIL 1000
 #define FRAME_RATE 1/60
 
 
 class Stopwatch {
-    clock_t t1;
+    std::chrono::steady_clock::time_point t0;
 public:
     float current_t;
 

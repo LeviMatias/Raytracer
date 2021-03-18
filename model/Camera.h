@@ -10,7 +10,7 @@
 #include "Scene.h"
 #include "Image.h"
 
-#define N_DRAW_THREADS 4
+#define N_DRAW_THREADS 8
 
 class Camera {
 public:

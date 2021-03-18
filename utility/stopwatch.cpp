@@ -5,17 +5,16 @@
 #include "stopwatch.h"
 
 Stopwatch::Stopwatch() {
-    this->reset();
+    t0 = std::chrono::steady_clock::now();
 }
 
 void Stopwatch::reset() {
-    t1 = clock();
-    current_t = 0;
+    t0 = std::chrono::steady_clock::now();
 }
 
 float Stopwatch::diff() {
-    clock_t t2 = clock();
-    float t = float(t2-t1)/CLOCKS_PER_SEC;
-    current_t = t;
-    return t;
+    auto t1 = std::chrono::steady_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::seconds>(t1 - t0);
+
+    return duration.count();
 }

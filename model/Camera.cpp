@@ -27,6 +27,8 @@ void Camera::Draw(Scene &scene, Image &canvas) {
         t.emplace_back(&scene, this, &canvas, i, N_DRAW_THREADS);
     }
 
+    //had to do it separate loop otherwise compiler bugs out by calling the method run()
+    //before finishing instantiation
     for (int i=0; i < N_DRAW_THREADS; i++){
         t[i].run();
     }
