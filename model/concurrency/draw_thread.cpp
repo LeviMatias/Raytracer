@@ -3,7 +3,7 @@
 //
 
 #include "draw_thread.h"
-#include "../utility/Ray.h"
+#include "../../utility/Ray.h"
 
 DrawThread::DrawThread(Scene *w, Camera *c, Image *i, int start, int ofs) {
     canvas = i;
@@ -14,8 +14,8 @@ DrawThread::DrawThread(Scene *w, Camera *c, Image *i, int start, int ofs) {
 }
 
 void DrawThread::_run() {
-    std::cerr << "\rThread working: " << offset << ' ' << std::flush;
-    std::cout << "\rThread working: " << offset << ' ' << std::flush;
+    std::cerr << "\rThread working: " << offset_start << ' ' << std::endl;
+
     for (int i = offset_start; i < canvas->h * canvas->w; i += offset){
         Color pixel_color(0, 0, 0);
         int y = static_cast<int>(i / canvas->w);

@@ -6,12 +6,12 @@
 #define RAYTRACER_DRAW_THREAD_H
 
 
-#include "../utility/BaseThread.h"
-#include "../utility/Random.h"
-#include "../utility/Utility.h"
-#include "Image.h"
-#include "Camera.h"
-#include "Scene.h"
+#include "BaseThread.h"
+#include "../../utility/Random.h"
+#include "../../utility/Utility.h"
+#include "../Image.h"
+#include "../Camera.h"
+#include "../Scene.h"
 
 #define STROKES 100
 #define MAX_DEPTH 25

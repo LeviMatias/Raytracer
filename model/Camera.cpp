@@ -3,7 +3,7 @@
 //
 
 #include "Camera.h"
-#include "draw_thread.h"
+#include "concurrency/draw_thread.h"
 
 Camera::Camera(double viewport_height, double aspect_ratio, double focal_length) {
     this->viewport_height = viewport_height;
@@ -25,7 +25,10 @@ void Camera::Draw(Scene &scene, Image &canvas) {
 
     for (int i=0; i < N_DRAW_THREADS; i++){
         t.emplace_back(&scene, this, &canvas, i, N_DRAW_THREADS);
-        t.back().run();
+    }
+
+    for (int i=0; i < N_DRAW_THREADS; i++){
+        t[i].run();
     }
 
     for (int i=0; i < N_DRAW_THREADS; i++){
