@@ -20,19 +20,19 @@ void Image::WriteColor(Color pixel_color) {
         << static_cast<int>(255.999 * b) << '\n';
 }
 
-Image::Image(double aspect_ratio, int w): Image(IMAGE_NAME, aspect_ratio, w) {}
+Image::Image(): Image(IMAGE_NAME) {}
 
-Image::Image(const std::string& imgname, double aspect_ratio, int w) : buffer(w * static_cast<int>(w / aspect_ratio)) {
+Image::Image(const std::string& imgname) : buffer(IMG_WIDTH * IMG_HEIGHT){
     out.OpenWrite(imgname);
-    this->aspect_ratio = aspect_ratio;
-    this->w = w;
-    this->h = static_cast<int>(w / aspect_ratio);
-    buffer.reserve(w * h);
+    this->aspect_ratio = IMG_ASPECT_RATIO;
+    this->w = IMG_WIDTH;
+    this->h = IMG_HEIGHT;
 
     out << "P3\n" << w << " " << this->h << "\n255\n";
 }
 
 void Image::WriteColorAt(Color col, int x, int y) {
+    //convert to reg and apply sqrt gamma correction
     int r = static_cast<int>(255.999 * sqrt(col.x()));
     int g = static_cast<int>(255.999 * sqrt(col.y()));
     int b = static_cast<int>(255.999 * sqrt(col.z()));
@@ -42,7 +42,8 @@ void Image::WriteColorAt(Color col, int x, int y) {
     buffer[ w * y + x].b =  b;
 }
 
-void Image::Flush() {
+void Image::Save() {
+
     for (auto pix = buffer.end(); pix != buffer.begin(); pix--){
         out << pix->r << ' '
             << pix->g << ' '

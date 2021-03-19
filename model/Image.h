@@ -9,6 +9,9 @@
 #include "../utility/safe_stream.h"
 #include "../utility/Vec3.h"
 
+#define IMG_WIDTH 400
+#define IMG_ASPECT_RATIO (16.0/9.0)
+#define IMG_HEIGHT (static_cast<int>(IMG_WIDTH / IMG_ASPECT_RATIO))
 #define IMAGE_NAME "image.ppm"
 
 struct pixel_rgb{
@@ -28,15 +31,15 @@ public:
     int h;
     int w;
 
-    Image(const std::string& imgname, double aspect_ratio, int w);
+    Image();
 
-    Image(double aspect_ratio, int w);
+    explicit Image(const std::string& imgname);
 
     void WriteColor(Color pixel_color);
 
     void WriteColorAt(Color pixel_color, int x, int y);
 
-    void Flush();
+    void Save();
 
 private:
     SafeStream out;

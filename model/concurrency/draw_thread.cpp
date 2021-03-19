@@ -19,13 +19,13 @@ void DrawThread::_run() {
         int y = static_cast<int>(i / canvas->w);
         int x = i - canvas->w * y;
 
-        for (int s = 0; s < STROKES; ++s) {
+        for (int s = 0; s < SAMPLES; ++s) {
             auto u = (x + Random::NextNumber()) / (canvas->w-1);
             auto v = (y + Random::NextNumber()) / (canvas->h-1);
             Ray r = cam->GetRay(u, v);
             pixel_color += _ray2Color(r);
         }
-        canvas->WriteColorAt(pixel_color/STROKES, x, y);
+        canvas->WriteColorAt(pixel_color / SAMPLES, x, y);
     }
 }
 
@@ -38,7 +38,7 @@ Color DrawThread::_ray2Color_rec(const Ray &r, int depth) const {
     if (depth >= MAX_DEPTH ) return {};
 
     hit_record rec;
-    if (world->hit(r, 0, INF, rec)) {
+    if (world->hit(r, 0.0001, INF, rec)) {
         double x = Random::NextNumber(-1,1);
         double s = cos((PI/2) * x);
         double y = Random::NextNumber(-s, s);
@@ -46,9 +46,9 @@ Color DrawThread::_ray2Color_rec(const Ray &r, int depth) const {
         double z = Random::NextNumber(-eq, eq);
 
         Point3 target = rec.p + rec.normal + Vec3(x, y, z);
-        return 0.50 * _ray2Color_rec(Ray(rec.p, target - rec.p), ++depth);
+        return 0.5 * _ray2Color_rec(Ray(rec.p, target - rec.p), ++depth);
     }
     Vec3 unit_direction = r.direction.unit();
     auto t = 0.5*(unit_direction.y() + 1.0);
-    return (1.0-t) * WHITE + t * LIGHT_BLUE;
+    return (1.0-t) * WHITE + t * LIGHT_YELLOW;
 }

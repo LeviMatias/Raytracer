@@ -13,7 +13,7 @@ int main() {
     t.reset();
 
     //image
-    Image img(16.0/9.0, 400);
+    Image img;
 
     // World
     Scene world;
@@ -25,9 +25,9 @@ int main() {
 
     cam.Draw(world, img);
 
-    std::cerr << "\nDone in " << t.diff() << " seconds"<<std::endl;
+    img.Save();
 
-    img.Flush();
+    std::cerr << "\nDone in " << t.diff() << " seconds"<<std::flush;
 
     return 0;
 }

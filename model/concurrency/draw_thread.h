@@ -13,10 +13,12 @@
 #include "../Camera.h"
 #include "../Scene.h"
 
-#define STROKES 100
-#define MAX_DEPTH 25
-#define LIGHT_BLUE Color(0.5, 0.7, 1.0)
+#define SAMPLES 50
+#define MAX_DEPTH 50
+
+#define LIGHT_YELLOW Color(0.9, 0.8, 0.6)
 #define WHITE Color(1.0, 1.0, 1.0)
+
 
 class DrawThread : public BaseThread {
 public:

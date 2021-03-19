@@ -4,6 +4,7 @@
 
 #include "Camera.h"
 #include "concurrency/draw_thread.h"
+#include "concurrency/StatusThread.h"
 
 Camera::Camera(double viewport_height, double aspect_ratio, double focal_length) {
     this->viewport_height = viewport_height;
@@ -22,6 +23,8 @@ Ray Camera::GetRay(double x, double y) const {
 
 void Camera::Draw(Scene &scene, Image &canvas) {
     std::vector<DrawThread> t;
+    StatusThread st;
+    st.run();
 
     for (int i=0; i < N_DRAW_THREADS; i++){
         t.emplace_back(&scene, this, &canvas, i, N_DRAW_THREADS);
@@ -36,4 +39,7 @@ void Camera::Draw(Scene &scene, Image &canvas) {
     for (int i=0; i < N_DRAW_THREADS; i++){
         t[i].join();
     }
+
+    st.close();
+    st.join();
 }
