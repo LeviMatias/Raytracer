@@ -9,7 +9,7 @@
 #include "../utility/safe_stream.h"
 #include "../utility/Vec3.h"
 
-#define IMG_WIDTH 400
+#define IMG_WIDTH 800
 #define IMG_ASPECT_RATIO (16.0/9.0)
 #define IMG_HEIGHT (static_cast<int>(IMG_WIDTH / IMG_ASPECT_RATIO))
 #define IMAGE_NAME "image.ppm"
