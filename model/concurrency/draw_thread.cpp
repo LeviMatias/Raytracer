@@ -35,6 +35,8 @@ Color DrawThread::_ray2Color(const Ray& r) const {
 }
 
 Color DrawThread::_ray2Color_rec(const Ray &r, int depth) const {
+    //gather light recursively
+
     if (depth >= MAX_DEPTH ) return {};
 
     hit_record rec;
