@@ -18,6 +18,7 @@ class StatusThread : public BaseThread {
                 sleep(.5);
             }
         }
+        std::cerr<< "" <<std::flush;
     }
 };
 

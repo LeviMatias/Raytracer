@@ -6,7 +6,7 @@
 
 bool Metal::Scatter(const Ray &r_in, const hit_record &rec, Color &attenuation, Ray &scattered) const {
     Vec3 reflected = r_in.direction.unit().reflect( rec.normal );
-    scattered = Ray(rec.p, reflected);
+    scattered = Ray(rec.p, reflected + fussiness * Vec3::RandomUnit());
     attenuation = albedo;
     return ( scattered.direction.dot(rec.normal) > 0);
 }

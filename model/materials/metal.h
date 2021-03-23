@@ -7,12 +7,17 @@
 
 
 #include "material.h"
+#define DEF_METAL_FUSSINESS 0
 
 class Metal : public Material {
 public:
-    Metal(Color c) : Material(c) {}
+    double fussiness;
 
-    Metal() :Material(DEFAULT_MAT_COLOR) {}
+    Metal(Color c) : Material(c), fussiness(DEF_METAL_FUSSINESS) {}
+
+    Metal(Color c, double f) : Material(c), fussiness((f < 1) ? f : 1) {}
+
+    Metal() :Material(DEFAULT_MAT_COLOR), fussiness(DEF_METAL_FUSSINESS) {}
 
     virtual bool Scatter(const Ray& r_in, const hit_record& rec, Color& attenuation, Ray& scattered) const;
 };

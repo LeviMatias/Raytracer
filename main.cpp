@@ -9,6 +9,7 @@
 #include "utility/stopwatch.h"
 #include "model/materials/lambertian.h"
 #include "model/materials/metal.h"
+#include "model/materials/grass.h"
 
 int main() {
     Stopwatch t;
@@ -19,10 +20,10 @@ int main() {
 
     // World
     Scene world;
-    auto material_ground = make_shared<Lambertian>(Color(0.8, 0.8, 0.0));
+    auto material_ground = make_shared<Grass>(Color(0.8, 0.8, 0.0));
     auto material_center = make_shared<Lambertian>(Color(0.7, 0.3, 0.3));
-    auto material_left   = make_shared<Metal>(Color(0.8, 0.8, 0.8));
-    auto material_right  = make_shared<Metal>(Color(0.8, 0.6, 0.2));
+    auto material_left   = make_shared<Metal>(Color(0.8, 0.8, 0.8), 0.75);
+    auto material_right  = make_shared<Metal>(Color(0.8, 0.6, 0.2), 0.1);
 
     world.add(make_shared<Sphere>(material_ground, Point3( 0.0, -100.5, -1.0), 100.0));
     world.add(make_shared<Sphere>(material_center, Point3( 0.0,    0.0, -1.0),   0.5));
@@ -36,7 +37,6 @@ int main() {
 
     img.Save();
 
-    std::cerr<<std::flush;
     std::cerr << "\nDone in " << t.diff() << " seconds"<<std::flush;
 
     return 0;
