@@ -5,6 +5,7 @@
 #include "lambertian.h"
 
 bool Lambertian::Scatter(const Ray &r_in, const hit_record &rec, Color &attenuation, Ray &scattered) {
+    //scatter ray in random direction
     auto scatter_direction = rec.normal + Vec3::RandomUnit();
 
     //catch the case where the resulting scatter vector is close to zero
@@ -12,7 +13,7 @@ bool Lambertian::Scatter(const Ray &r_in, const hit_record &rec, Color &attenuat
     if (scatter_direction.NearZero())
         scatter_direction = rec.normal;
 
-    scattered = ray(rec.p, scatter_direction);
+    scattered = Ray(rec.p, scatter_direction);
     attenuation = albedo;
     return true;
 }

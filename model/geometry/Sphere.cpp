@@ -44,7 +44,7 @@ bool Sphere::Hit(const Ray &r, double t_min, double t_max, hit_record &rec) cons
     //normal pointing outwards from center
     Vec3 outward_normal = (rec.p - center) / radius;
     rec.set_face_normal(r, outward_normal);
-    rec.mat_ptr = material;
+    rec.hit = (Hittable *)this;
 
     return true;
 }

@@ -5,7 +5,8 @@
 #ifndef RAYTRACER_HIT_RECORD_H
 #define RAYTRACER_HIT_RECORD_H
 
-class Material;
+#include "../utility/Ray.h"
+class Hittable;
 
 struct hit_record {
     Point3 p;
@@ -14,8 +15,7 @@ struct hit_record {
     // t record the t-value for the hit_record
     double t{};
     bool front_face;
-    Material* mat_ptr;
-
+    Hittable* hit = nullptr;
 
     inline void set_face_normal(const Ray& r, const Vec3& outward_normal) {
         front_face = r.direction.dot(outward_normal) < 0;
