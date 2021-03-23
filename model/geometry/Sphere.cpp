@@ -3,10 +3,11 @@
 //
 
 #include "Sphere.h"
+#include "../materials/lambertian.h"
 
-Sphere::Sphere(Point3 center, double r) : Sphere(center, r, nullptr) {}
+Sphere::Sphere(Point3 center, double r) : Sphere(make_shared<DEFAULT_MATERIAL>(), center, r) {}
 
-Sphere::Sphere(Point3 center, double r, Material *material) : Hittable(material) {
+Sphere::Sphere(shared_ptr<Material> material, Point3 center, double r) : Hittable(material) {
     this->center = center;
     radius = r;
 }

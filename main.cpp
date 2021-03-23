@@ -27,6 +27,7 @@ int main() {
 
     img.Save();
 
+    std::cerr<<std::flush;
     std::cerr << "\nDone in " << t.diff() << " seconds"<<std::flush;
 
     return 0;

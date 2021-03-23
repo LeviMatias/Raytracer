@@ -12,6 +12,8 @@ class Metal : public Material {
 public:
     Metal(Color c) : Material(c) {}
 
+    Metal() :Material(DEFAULT_MAT_COLOR) {}
+
     virtual bool Scatter(const Ray& r_in, const hit_record& rec, Color& attenuation, Ray& scattered) const;
 };
 

@@ -9,6 +9,8 @@
 
 class Lambertian : public Material {
 public:
+    Lambertian() :Material(DEFAULT_MAT_COLOR) {}
+
     explicit Lambertian(Color color) : Material(color){}
 
     virtual bool Scatter(const Ray& r_in, const hit_record& rec, Color& attenuation, Ray& scattered) const;

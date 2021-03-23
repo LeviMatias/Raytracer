@@ -39,14 +39,11 @@ Color DrawThread::_ray2Color_rec(const Ray &r, int depth) const {
 
     hit_record rec;
     if (world->Hit(r, 0.0001, INF, rec)) {
-        double x = Random::NextNumber(-1,1);
-        double s = cos((PI/2) * x);
-        double y = Random::NextNumber(-s, s);
-        double eq = sqrt(1 - x*x - y*y);
-        double z = Random::NextNumber(-eq, eq);
-
-        Point3 target = rec.p + rec.normal + Vec3(x, y, z);
-        return 0.5 * _ray2Color_rec(Ray(rec.p, target - rec.p), ++depth);
+        Ray scattered;
+        Color attenuation;
+        if (rec.hit->material->Scatter(r, rec, attenuation, scattered))
+            return attenuation * _ray2Color_rec(scattered, ++depth);
+        return Color();
     }
     Vec3 unit_direction = r.direction.unit();
     auto t = 0.5*(unit_direction.y() + 1.0);

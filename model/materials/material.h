@@ -7,13 +7,15 @@
 
 #include "../hit_record.h"
 
+#define DEFAULT_MAT_COLOR Color(0.5, 0.5, 0.5)
+
 class Material {
 public:
     Color albedo;
 
     explicit Material(Color c) : albedo(c) {}
 
-    virtual bool Scatter(const Ray& r_in, const hit_record& rec, Color& attenuation, Ray& scattered){};
+    virtual bool Scatter(const Ray& r_in, const hit_record& rec, Color& attenuation, Ray& scattered) const = 0;
 };
 
 

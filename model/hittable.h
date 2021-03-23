@@ -11,13 +11,15 @@
 #include "materials/material.h"
 #include "hit_record.h"
 
+#define DEFAULT_MATERIAL Lambertian
+
 class Hittable {
 public:
-    Material* material;
+    shared_ptr<Material> material;
 
     Hittable()= default;
 
-    explicit Hittable(Material* mat) : material(mat){};
+    explicit Hittable(shared_ptr<Material> &mat) : material(mat){};
 
     virtual bool Hit(const Ray& r, double t_min, double t_max, hit_record& rec) const = 0;
 };
