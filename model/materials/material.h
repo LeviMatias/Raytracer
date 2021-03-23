@@ -9,7 +9,11 @@
 
 class Material {
 public:
-    virtual bool Scatter(const Ray& r_in, const hit_record& rec, Color& attenuation, Ray& scattered) const = 0;
+    Color albedo;
+
+    explicit Material(Color c) : albedo(c) {}
+
+    virtual bool Scatter(const Ray& r_in, const hit_record& rec, Color& attenuation, Ray& scattered){};
 };
 
 

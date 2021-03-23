@@ -4,7 +4,7 @@
 
 #include "lambertian.h"
 
-bool Lambertian::Scatter(const Ray &r_in, const hit_record &rec, Color &attenuation, Ray &scattered) {
+bool Lambertian::Scatter(const Ray &r_in, const hit_record &rec, Color &attenuation, Ray &scattered) const{
     //scatter ray in random direction
     auto scatter_direction = rec.normal + Vec3::RandomUnit();
 

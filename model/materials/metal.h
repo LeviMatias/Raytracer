@@ -2,17 +2,18 @@
 // Created by Matias Ignacio Levi Fernandez on 23/03/2021.
 //
 
-#ifndef RAYTRACER_LAMBERTIAN_H
-#define RAYTRACER_LAMBERTIAN_H
+#ifndef RAYTRACER_METAL_H
+#define RAYTRACER_METAL_H
+
 
 #include "material.h"
 
-class Lambertian : public Material {
+class Metal : public Material {
 public:
-    explicit Lambertian(Color color) : Material(color){}
+    Metal(Color c) : Material(c) {}
 
     virtual bool Scatter(const Ray& r_in, const hit_record& rec, Color& attenuation, Ray& scattered) const;
 };
 
 
-#endif //RAYTRACER_LAMBERTIAN_H
+#endif //RAYTRACER_METAL_H

@@ -43,6 +43,14 @@ public:
                + e[2] * v.e[2];
     }
 
+    inline Vec3 reflect(const Vec3& normal) const{
+        //         *
+        //  \  |  /
+        //   \ | /
+        //  __\N/__
+        return *this - 2 * this->dot(normal) * normal;
+    }
+
     inline bool NearZero(){
         const static auto s = 1e-8;
         return (fabs(e[0]) < s) && (fabs(e[1]) < s) && (fabs(e[2]) < s);

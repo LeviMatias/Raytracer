@@ -9,8 +9,6 @@
 #include <chrono>
 
 #define SEC_TO_MIL 1000
-#define FRAME_RATE 1/60
-
 
 class Stopwatch {
     std::chrono::steady_clock::time_point t0;
