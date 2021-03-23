@@ -5,7 +5,7 @@
 #ifndef RAYTRACER_SCENE_H
 #define RAYTRACER_SCENE_H
 
-#include "Sphere.h"
+#include "geometry/Sphere.h"
 #include <memory>
 #include <vector>
 
@@ -23,7 +23,7 @@ public:
     void clear() { objects.clear(); }
     void add(const shared_ptr<Hittable>& object);
 
-    bool hit(const Ray& r, double t_min, double t_max, hit_record& rec) const override;
+    bool Hit(const Ray& r, double t_min, double t_max, hit_record& rec) const override;
 
 
 };

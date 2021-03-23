@@ -1,12 +1,11 @@
 //
-// Created by Matias Ignacio Levi Fernandez on 10/03/2021.
+// Created by Matias Ignacio Levi Fernandez on 23/03/2021.
 //
 
-#ifndef RAYTRACER_HITTABLE_H
-#define RAYTRACER_HITTABLE_H
+#ifndef RAYTRACER_HIT_RECORD_H
+#define RAYTRACER_HIT_RECORD_H
 
-#include "../utility/Vec3.h"
-#include "../utility/Ray.h"
+class Material;
 
 struct hit_record {
     Point3 p;
@@ -15,18 +14,15 @@ struct hit_record {
     // t record the t-value for the hit_record
     double t{};
     bool front_face;
+    Material* mat_ptr;
+
 
     inline void set_face_normal(const Ray& r, const Vec3& outward_normal) {
         front_face = r.direction.dot(outward_normal) < 0;
-        //hit normal always points contrary to ray
+        //Hit normal always points contrary to ray
         normal = front_face ? outward_normal :-outward_normal;
     }
 };
 
-class Hittable {
-public:
-    virtual bool hit(const Ray& r, double t_min, double t_max, hit_record& rec) const = 0;
-};
 
-
-#endif //RAYTRACER_HITTABLE_H
+#endif //RAYTRACER_HIT_RECORD_H

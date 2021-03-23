@@ -4,16 +4,18 @@
 
 #include "Sphere.h"
 
-Sphere::Sphere(Point3 center, double r) {
+Sphere::Sphere(Point3 center, double r) : Sphere(center, r, nullptr) {}
+
+Sphere::Sphere(Point3 center, double r, Material *material) : Hittable(material) {
     this->center = center;
     radius = r;
 }
 
-bool Sphere::hit(const Ray &r, double t_min, double t_max, hit_record &rec) const {
+bool Sphere::Hit(const Ray &r, double t_min, double t_max, hit_record &rec) const {
     // C = sphere center
     // (ray.at(t) - C) . (ray.At(t) - C) = r**2
     // (origin + t*direction - C) . (origin + t*direction - C) = r**2
-    // the sphere is hit for t values that satisfy above eq
+    // the sphere is Hit for t values that satisfy above eq
 
     Vec3 oc = r.origin - center;
 
@@ -42,6 +44,7 @@ bool Sphere::hit(const Ray &r, double t_min, double t_max, hit_record &rec) cons
     //normal pointing outwards from center
     Vec3 outward_normal = (rec.p - center) / radius;
     rec.set_face_normal(r, outward_normal);
+    rec.mat_ptr = material;
 
     return true;
 }

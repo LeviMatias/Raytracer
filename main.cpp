@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "utility/safe_stream.h"
-#include "utility/Utility.h"
+#include "utility/defines.h"
 
 #include "model/Camera.h"
 #include "model/Scene.h"

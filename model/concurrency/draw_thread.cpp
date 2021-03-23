@@ -38,7 +38,7 @@ Color DrawThread::_ray2Color_rec(const Ray &r, int depth) const {
     if (depth >= MAX_DEPTH ) return {};
 
     hit_record rec;
-    if (world->hit(r, 0.0001, INF, rec)) {
+    if (world->Hit(r, 0.0001, INF, rec)) {
         double x = Random::NextNumber(-1,1);
         double s = cos((PI/2) * x);
         double y = Random::NextNumber(-s, s);

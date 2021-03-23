@@ -6,7 +6,7 @@
 #define RAYTRACER_SPHERE_H
 
 
-#include "Hittable.h"
+#include "../hittable.h"
 
 class Sphere: public Hittable {
 public:
@@ -15,7 +15,9 @@ public:
 
     Sphere(Point3 center, double r);
 
-    virtual bool hit(const Ray& r, double t_min, double t_max, hit_record& rec) const override;
+    Sphere(Point3 center, double r, Material* material);
+
+    virtual bool Hit(const Ray& r, double t_min, double t_max, hit_record& rec) const override;
 
 };
 

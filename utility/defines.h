@@ -2,8 +2,8 @@
 // Created by Matias Ignacio Levi Fernandez on 11/03/2021.
 //
 
-#ifndef RAYTRACER_UTILITY_H
-#define RAYTRACER_UTILITY_H
+#ifndef RAYTRACER_DEFINES_H
+#define RAYTRACER_DEFINES_H
 
 #include <cmath>
 #include <limits>
@@ -33,4 +33,4 @@ using std::cos;
 #include "Ray.h"
 #include "Vec3.h"
 
-#endif //RAYTRACER_UTILITY_H
+#endif //RAYTRACER_DEFINES_H
