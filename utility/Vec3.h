@@ -43,12 +43,21 @@ public:
                + e[2] * v.e[2];
     }
 
-    inline static Vec3 random() {
+    inline bool NearZero(){
+        const static auto s = 1e-8;
+        return (fabs(e[0]) < s) && (fabs(e[1]) < s) && (fabs(e[2]) < s);
+    }
+
+    inline static Vec3 Random() {
         return {Random::NextNumber(), Random::NextNumber(), Random::NextNumber()};
     }
 
-    inline static Vec3 random(double min, double max) {
+    inline static Vec3 Random(double min, double max) {
         return {Random::NextNumber(min, max), Random::NextNumber(min, max), Random::NextNumber(min, max)};
+    }
+
+    inline static Vec3 RandomUnit(){
+        return Vec3::Random(-1, 1).unit();
     }
 
     // OPERATORS

@@ -7,9 +7,9 @@
 
 #include "../utility/Vec3.h"
 #include "../utility/Ray.h"
-#include "materials/material.h"
 #include "../utility/defines.h"
 #include "hit_record.h"
+#include "materials/material.h"
 
 class Hittable {
 public:
