@@ -5,7 +5,7 @@
 #ifndef RAYTRACER_SCENE_H
 #define RAYTRACER_SCENE_H
 
-#include "geometry/Sphere.h"
+#include "geometry/sphere.h"
 #include <memory>
 #include <vector>
 

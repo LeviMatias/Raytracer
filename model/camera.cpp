@@ -2,9 +2,9 @@
 // Created by Matias Ignacio Levi Fernandez on 09/03/2021.
 //
 
-#include "Camera.h"
+#include "camera.h"
 #include "concurrency/draw_thread.h"
-#include "concurrency/StatusThread.h"
+#include "concurrency/status_thread.h"
 
 Camera::Camera(double viewport_height, double aspect_ratio, double focal_length) {
     this->viewport_height = viewport_height;

@@ -2,7 +2,7 @@
 // Created by Matias Ignacio Levi Fernandez on 12/03/2021.
 //
 
-#include "Image.h"
+#include "image.h"
 
 void Image::WriteColor(Color pixel_color) {
     // Write the translated [0,255] value of each Color component.

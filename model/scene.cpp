@@ -2,7 +2,7 @@
 // Created by Matias Ignacio Levi Fernandez on 11/03/2021.
 //
 
-#include "Scene.h"
+#include "scene.h"
 
 bool Scene::Hit(const Ray &r, double t_min, double t_max, hit_record &rec) const {
     hit_record aux_record;

@@ -2,8 +2,8 @@
 // Created by Matias Ignacio Levi Fernandez on 12/03/2021.
 //
 
-#ifndef RAYTRACER_BASETHREAD_H
-#define RAYTRACER_BASETHREAD_H
+#ifndef RAYTRACER_BASE_THREAD_H
+#define RAYTRACER_BASE_THREAD_H
 
 #include <thread>
 #include <atomic>
@@ -40,4 +40,4 @@ public:
 };
 
 
-#endif //RAYTRACER_BASETHREAD_H
+#endif //RAYTRACER_BASE_THREAD_H

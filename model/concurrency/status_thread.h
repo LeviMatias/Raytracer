@@ -2,11 +2,11 @@
 // Created by Matias Ignacio Levi Fernandez on 18/03/2021.
 //
 
-#ifndef RAYTRACER_STATUSTHREAD_H
-#define RAYTRACER_STATUSTHREAD_H
+#ifndef RAYTRACER_STATUS_THREAD_H
+#define RAYTRACER_STATUS_THREAD_H
 
 
-#include "BaseThread.h"
+#include "base_thread.h"
 
 class StatusThread : public BaseThread {
     void _run(){
@@ -22,4 +22,4 @@ class StatusThread : public BaseThread {
 };
 
 
-#endif //RAYTRACER_STATUSTHREAD_H
+#endif //RAYTRACER_STATUS_THREAD_H

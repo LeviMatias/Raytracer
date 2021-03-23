@@ -7,7 +7,7 @@
 
 #include <cmath>
 #include <iostream>
-#include "Random.h"
+#include "random.h"
 
 #define COORDINATES 3
 

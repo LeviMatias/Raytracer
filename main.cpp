@@ -3,9 +3,9 @@
 #include "utility/safe_stream.h"
 #include "utility/defines.h"
 
-#include "model/Camera.h"
-#include "model/Scene.h"
-#include "model/Image.h"
+#include "model/camera.h"
+#include "model/scene.h"
+#include "model/image.h"
 #include "utility/stopwatch.h"
 #include "model/materials/lambertian.h"
 #include "model/materials/metal.h"

@@ -3,7 +3,7 @@
 //
 
 #include "draw_thread.h"
-#include "../../utility/Ray.h"
+#include "../../utility/ray.h"
 
 DrawThread::DrawThread(Scene *w, Camera *c, Image *i, int start, int ofs) {
     canvas = i;

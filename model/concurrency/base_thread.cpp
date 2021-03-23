@@ -2,7 +2,7 @@
 // Created by Matias Ignacio Levi Fernandez on 12/03/2021.
 //
 
-#include "BaseThread.h"
+#include "base_thread.h"
 
 void BaseThread::close() {
     this->alive.store(false);

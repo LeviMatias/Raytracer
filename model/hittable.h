@@ -5,8 +5,8 @@
 #ifndef RAYTRACER_HITTABLE_H
 #define RAYTRACER_HITTABLE_H
 
-#include "../utility/Vec3.h"
-#include "../utility/Ray.h"
+#include "../utility/vec3.h"
+#include "../utility/ray.h"
 #include "../utility/defines.h"
 #include "materials/material.h"
 #include "hit_record.h"

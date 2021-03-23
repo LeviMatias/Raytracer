@@ -5,10 +5,10 @@
 #ifndef RAYTRACER_CAMERA_H
 #define RAYTRACER_CAMERA_H
 
-#include "../utility/Vec3.h"
-#include "../utility/Ray.h"
-#include "Scene.h"
-#include "Image.h"
+#include "../utility/vec3.h"
+#include "../utility/ray.h"
+#include "scene.h"
+#include "image.h"
 
 #define N_DRAW_THREADS 8
 

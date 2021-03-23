@@ -2,11 +2,11 @@
 // Created by Matias Ignacio Levi Fernandez on 16/03/2021.
 //
 
-#ifndef RAYTRACER_LAMBDATHREAD_H
-#define RAYTRACER_LAMBDATHREAD_H
+#ifndef RAYTRACER_LAMBDA_THREAD_H
+#define RAYTRACER_LAMBDA_THREAD_H
 
 
-#include "BaseThread.h"
+#include "base_thread.h"
 
 template<typename F>
 class LambdaThread : public BaseThread {
@@ -29,4 +29,4 @@ void LambdaThread<F>::_run() {
 }
 
 
-#endif //RAYTRACER_LAMBDATHREAD_H
+#endif //RAYTRACER_LAMBDA_THREAD_H

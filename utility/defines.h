@@ -30,7 +30,7 @@ using std::cos;
 
 // Common Headers
 
-#include "Ray.h"
-#include "Vec3.h"
+#include "ray.h"
+#include "vec3.h"
 
 #endif //RAYTRACER_DEFINES_H

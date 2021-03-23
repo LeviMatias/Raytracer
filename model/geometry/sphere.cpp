@@ -2,7 +2,7 @@
 // Created by Matias Ignacio Levi Fernandez on 10/03/2021.
 //
 
-#include "Sphere.h"
+#include "sphere.h"
 #include "../materials/lambertian.h"
 
 Sphere::Sphere(Point3 center, double r) : Sphere(make_shared<DEFAULT_MATERIAL>(), center, r) {}
