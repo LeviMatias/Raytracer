@@ -51,6 +51,13 @@ public:
         return *this - 2 * this->dot(normal) * normal;
     }
 
+    inline Vec3 refract(const Vec3& n, double refractive_index_quotient){
+        auto cos_theta = fmin( (-*this).dot(n), 1.0);
+        Vec3 r_out_perp =  refractive_index_quotient * (*this + cos_theta*n);
+        Vec3 r_out_parallel = -sqrt(fabs(1.0 - r_out_perp.length_squared())) * n;
+        return r_out_perp + r_out_parallel;
+    }
+
     inline bool NearZero(){
         const static auto s = 1e-8;
         return (fabs(e[0]) < s) && (fabs(e[1]) < s) && (fabs(e[2]) < s);
