@@ -21,7 +21,6 @@ public:
     Reflective() :Material(DEFAULT_MAT_COLOR), fussiness(DEF_FUSSINESS) {}
 
     virtual bool Scatter(const Ray& r_in, const hit_record& rec, Color& attenuation, Ray& scattered) const;
-
 };
 
 using Metal = Reflective;

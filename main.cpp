@@ -30,7 +30,7 @@ int main() {
     world.add(make_shared<Sphere>(material_ground, Point3( 0.0, -100.5, -1.0), 100.0));
     world.add(make_shared<Sphere>(material_center, Point3( 0.0,    0.0, -1.0),   0.5));
     world.add(make_shared<Sphere>(material_left, Point3(-1.0,    0.0, -1.0),   0.5));
-    world.add(make_shared<Sphere>(material_right, Point3( 1.0,    0.0, -1.0),   0.5));
+    world.add(make_shared<Sphere>(material_right, Point3( 1.0,    0.0, -1.0),   -0.4));
 
     // Camera
     Camera cam(2.0, img.aspect_ratio, 1.0);
