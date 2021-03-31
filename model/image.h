@@ -6,7 +6,7 @@
 #define RAYTRACER_IMAGE_H
 
 
-#include "../utility/safe_stream.h"
+#include "concurrency/safe_stream.h"
 #include "../utility/vec3.h"
 
 #define IMG_WIDTH 800

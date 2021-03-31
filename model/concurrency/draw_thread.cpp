@@ -37,12 +37,12 @@ Color DrawThread::_ray2Color(const Ray& r) const {
 Color DrawThread::_ray2Color_rec(const Ray &r, int depth) const {
     //gather light recursively
 
-    if (depth >= MAX_DEPTH ) return {};
+    if (depth >= (int)Random::NextNumber(1, MAX_DEPTH) ) return {};
 
     hit_record rec;
     if (world->Hit(r, 0.0001, INF, rec)) {
         Ray scattered;
-        Color attenuation;
+        Color attenuation; //depends on material hit
         if (rec.hit->material->Scatter(r, rec, attenuation, scattered))
             return attenuation * _ray2Color_rec(scattered, ++depth);
         return Color();

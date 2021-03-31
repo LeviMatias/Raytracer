@@ -14,14 +14,15 @@
 class Dielectric : public Reflective {
 public:
     double refraction_index;
+    //todo fix reflective on dielectrics
 
-    Dielectric(Color c, double ir) : Reflective(c), refraction_index(ir){};
+    Dielectric(Color c, double ir) : Reflective(c, ir/2), refraction_index(ir){};
 
-    explicit Dielectric(double ir) : Reflective(DEFAULT_MAT_COLOR), refraction_index(ir){};
+    explicit Dielectric(double ir) : Reflective(DEFAULT_MAT_COLOR, ir/2), refraction_index(ir){};
 
-    explicit Dielectric(Color c) : Reflective(c), refraction_index(DEF_REFRACTION_I){};
+    explicit Dielectric(Color c) : Reflective(c, DEF_REFRACTION_I/2), refraction_index(DEF_REFRACTION_I){};
 
-    Dielectric() : Reflective(DEFAULT_MAT_COLOR), refraction_index(DEF_REFRACTION_I){};
+    Dielectric() : Reflective(DEFAULT_MAT_COLOR, DEF_REFRACTION_I/2), refraction_index(DEF_REFRACTION_I){};
 
     virtual bool Scatter(const Ray& r_in, const hit_record& rec, Color& attenuation, Ray& scattered) const;
 
