@@ -23,7 +23,7 @@ public:
     Vec3 vertical;
     Vec3 lower_left_corner;
 
-    Camera(double viewport_height, double aspect_ratio, double focal_length);
+    Camera(double vertical_field_of_view, double aspect_ratio, double focal_length);
 
     void Draw(Scene& scene, Image& canvas);
 

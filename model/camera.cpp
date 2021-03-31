@@ -6,8 +6,12 @@
 #include "concurrency/draw_thread.h"
 #include "concurrency/status_thread.h"
 
-Camera::Camera(double viewport_height, double aspect_ratio, double focal_length) {
-    this->viewport_height = viewport_height;
+Camera::Camera(double v_fov, double aspect_ratio, double focal_length) {
+
+    auto theta = DEG2RAD(v_fov);
+    auto h = tan(theta/2);
+
+    this->viewport_height = 2 * h;
     this->focal_length = focal_length;
     this->viewport_width = aspect_ratio * viewport_height;
 

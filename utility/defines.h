@@ -26,7 +26,7 @@ using std::cos;
 // Utility macros
 #define CLAMP (x, min, max) (if (x > max) return max; if (x < min) return min; return x)
 
-#define DEG2RAD (deg) (deg * PI / 180.0)
+#define DEG2RAD(deg) (deg * PI / 180.0)
 
 // Common Headers
 

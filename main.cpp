@@ -22,18 +22,16 @@ int main() {
     // World
     Scene world;
 
-    auto material_ground = make_shared<Grass>(Color(0.8, 0.8, 0.0));
-    auto material_center = make_shared<Lambertian>(Color(0.7, 0.3, 0.3));
-    auto material_left   = make_shared<Metal>(Color(0.8, 0.8, 0.8), 0.75);
-    auto material_right  = make_shared<Glass>( 1.5);
+    auto R = cos(PI/4);
 
-    world.add(make_shared<Sphere>(material_ground, Point3( 0.0, -100.5, -1.0), 100.0));
-    world.add(make_shared<Sphere>(material_center, Point3( 0.0,    0.0, -1.0),   0.5));
-    world.add(make_shared<Sphere>(material_left, Point3(-1.0,    0.0, -1.0),   0.5));
-    world.add(make_shared<Sphere>(material_right, Point3( 1.0,    0.0, -1.0),   -0.4));
+    auto material_left  = make_shared<Lambertian>(Color(0,0,1));
+    auto material_right = make_shared<Lambertian>(Color(1,0,0));
+
+    world.add(make_shared<Sphere>(material_left, Point3(-R, 0, -1), R));
+    world.add(make_shared<Sphere>(material_right, Point3( R, 0, -1), R));
 
     // Camera
-    Camera cam(2.0, img.aspect_ratio, 1.0);
+    Camera cam(90.0, img.aspect_ratio, 1.0);
 
     cam.Draw(world, img);
 
