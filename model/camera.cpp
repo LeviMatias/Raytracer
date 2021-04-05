@@ -18,6 +18,7 @@ Camera::Camera(Vec3 position, Vec3 lookAt, double v_fov, double aspect_ratio) {
     Vec3 u = CAM_V_UP.cross(w).unit(); // horizontal axis vec
     Vec3 v = w.cross(u); // vertical axis vector
 
+    // right hand rule
     this->origin = position;
     this->horizontal = u * viewport_width;
     this->vertical = v * viewport_height;
