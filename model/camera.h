@@ -11,19 +11,26 @@
 #include "image.h"
 
 #define N_DRAW_THREADS 8
+#define CAM_V_UP Vec3(0,1.0,0)
 
 class Camera {
 public:
     double viewport_height;
     double viewport_width;
-    double focal_length;
 
     Point3 origin;
-    Vec3 horizontal;
-    Vec3 vertical;
-    Vec3 lower_left_corner;
 
-    Camera(double vertical_field_of_view, double aspect_ratio, double focal_length);
+    //cams horizontal axis
+    Vec3 horizontal;
+
+    // cams vertical axis
+    Vec3 vertical;
+
+    //lower left corner of the camera's viewport cam --> [ vp ]
+    Vec3 view_port_lower_left_corner;
+
+    Camera(Vec3 position, Vec3 lookAt,
+           double vertical_field_of_view, double aspect_ratio);
 
     void Draw(Scene& scene, Image& canvas);
 

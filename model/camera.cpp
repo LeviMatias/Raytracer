@@ -6,23 +6,28 @@
 #include "concurrency/draw_thread.h"
 #include "concurrency/status_thread.h"
 
-Camera::Camera(double v_fov, double aspect_ratio, double focal_length) {
+Camera::Camera(Vec3 position, Vec3 lookAt, double v_fov, double aspect_ratio) {
 
     auto theta = DEG2RAD(v_fov);
     auto h = tan(theta/2);
 
     this->viewport_height = 2 * h;
-    this->focal_length = focal_length;
     this->viewport_width = aspect_ratio * viewport_height;
 
-    this->origin = Point3();
-    this->horizontal = Vec3(viewport_width, 0, 0);
-    this->vertical = Vec3(0, viewport_height, 0);
-    this->lower_left_corner = origin - horizontal/2 - vertical/2 - Vec3(0, 0, focal_length);
+    Vec3 w = (position - lookAt).unit(); //dir to lookAt from pos
+    Vec3 u = CAM_V_UP.cross(w).unit(); // horizontal axis vec
+    Vec3 v = w.cross(u); // vertical axis vector
+
+    this->origin = position;
+    this->horizontal = u * viewport_width;
+    this->vertical = v * viewport_height;
+
+    //lower left corner of the camera's viewport cam --> [ vp ]
+    this->view_port_lower_left_corner = origin - horizontal/2 - vertical/2 - w;
 }
 
 Ray Camera::GetRay(double x, double y) const {
-    return {origin, lower_left_corner + x*horizontal + y*vertical - origin};
+    return {origin, view_port_lower_left_corner + x*horizontal + y*vertical - origin};
 }
 
 void Camera::Draw(Scene &scene, Image &canvas) {

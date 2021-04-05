@@ -43,19 +43,12 @@ public:
                + e[2] * v.e[2];
     }
 
-    inline Vec3 reflect(const Vec3& normal) const{
-        //         *
-        //  \  |  /
-        //   \ | /
-        //  __\N/__
-        return *this - 2 * this->dot(normal) * normal;
-    }
-
-    inline Vec3 refract(const Vec3& n, double refractive_index_quotient){
-        auto cos_theta = fmin( (-*this).dot(n), 1.0);
-        Vec3 r_out_perp =  refractive_index_quotient * (*this + cos_theta*n);
-        Vec3 r_out_parallel = -sqrt(fabs(1.0 - r_out_perp.length_squared())) * n;
-        return r_out_perp + r_out_parallel;
+    inline Vec3 cross(const Vec3 &other) const{
+        return {
+            this->y() * other.z() - this->z() * other.y(),
+            this->z() * other.x() - this->x() * other.z(),
+            this->x() * other.y() - this->y() * other.x()
+        };
     }
 
     inline bool NearZero(){
