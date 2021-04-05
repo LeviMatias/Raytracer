@@ -10,13 +10,17 @@
 #include "scene.h"
 #include "image.h"
 
-#define N_DRAW_THREADS 8
+#define N_DRAW_THREADS 16
 #define CAM_V_UP Vec3(0,1.0,0)
 
 class Camera {
 public:
     double viewport_height;
     double viewport_width;
+    double lens_radius;
+    Vec3 u, v, w;
+
+    //the focal length is the distance between the projection point and the image plane
 
     Point3 origin;
 
@@ -30,7 +34,8 @@ public:
     Vec3 view_port_lower_left_corner;
 
     Camera(Vec3 position, Vec3 lookAt,
-           double vertical_field_of_view, double aspect_ratio);
+           double vertical_field_of_view, double aspect_ratio,
+           double aperture, double focus_dist);
 
     void Draw(Scene& scene, Image& canvas);
 

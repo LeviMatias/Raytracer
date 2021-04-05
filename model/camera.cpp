@@ -6,7 +6,7 @@
 #include "concurrency/draw_thread.h"
 #include "concurrency/status_thread.h"
 
-Camera::Camera(Vec3 position, Vec3 lookAt, double v_fov, double aspect_ratio) {
+Camera::Camera(Vec3 position, Vec3 lookAt, double v_fov, double aspect_ratio, double aperture, double focus_dist) {
 
     auto theta = DEG2RAD(v_fov);
     auto h = tan(theta/2);
@@ -14,21 +14,26 @@ Camera::Camera(Vec3 position, Vec3 lookAt, double v_fov, double aspect_ratio) {
     this->viewport_height = 2 * h;
     this->viewport_width = aspect_ratio * viewport_height;
 
-    Vec3 w = (position - lookAt).unit(); //dir to lookAt from pos
-    Vec3 u = CAM_V_UP.cross(w).unit(); // horizontal axis vec
-    Vec3 v = w.cross(u); // vertical axis vector
-
     // right hand rule
+    w = (lookAt - position).unit(); //dir to lookAt from pos (look vector)
+    u = CAM_V_UP.cross(w).unit(); // horizontal axis vec (right vector)
+    v = w.cross(u); // vertical axis vector (top vector)
+
     this->origin = position;
-    this->horizontal = u * viewport_width;
-    this->vertical = v * viewport_height;
+    this->horizontal = u * viewport_width * focus_dist;
+    this->vertical = v * viewport_height * focus_dist;
 
     //lower left corner of the camera's viewport cam --> [ vp ]
-    this->view_port_lower_left_corner = origin - horizontal/2 - vertical/2 - w;
+    this->view_port_lower_left_corner = origin - horizontal/2 - vertical/2 + w*focus_dist;
+    lens_radius = aperture/2.0;
 }
 
 Ray Camera::GetRay(double x, double y) const {
-    return {origin, view_port_lower_left_corner + x*horizontal + y*vertical - origin};
+    double rad = DEG2RAD(Random::NextNumber(0, 360));
+    Vec3 offset = Vec3(std::cos(rad) , std::sin(rad), 0) * Random::NextNumber(0, lens_radius);
+    offset = v * offset.y() + u * offset.x();
+
+    return {origin + offset, view_port_lower_left_corner + x*horizontal + y*vertical - origin - offset};
 }
 
 void Camera::Draw(Scene &scene, Image &canvas) {
