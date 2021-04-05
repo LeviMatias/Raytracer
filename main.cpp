@@ -67,7 +67,7 @@ int main() {
 
     auto R = cos(PI/4);
 
-    auto material_ground = make_shared<Lambertian>(Color(0.8, 0.8, 0.0));
+    auto material_ground = make_shared<Grass>(Color(0.8, 0.8, 0.0));
     auto material_center = make_shared<Lambertian>(Color(0.1, 0.2, 0.5));
     auto material_left   = make_shared<Dielectric>(1.5);
     auto material_right  = make_shared<Metal>(Color(0.8, 0.6, 0.2), 0.0);
