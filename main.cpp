@@ -64,27 +64,15 @@ int main() {
 
     // World
     Scene world;
-
-    auto R = cos(PI/4);
-
-    auto material_ground = make_shared<Grass>(Color(0.8, 0.8, 0.0));
-    auto material_center = make_shared<Lambertian>(Color(0.1, 0.2, 0.5));
-    auto material_left   = make_shared<Dielectric>(1.5);
-    auto material_right  = make_shared<Metal>(Color(0.8, 0.6, 0.2), 0.0);
-
-    world.add(make_shared<Sphere>(Point3( 0.0, -100.5, -1.0), 100.0, material_ground));
-    world.add(make_shared<Sphere>(Point3( 0.0,    0.0, -1.0),   0.5, material_center));
-    world.add(make_shared<Sphere>(Point3(-1.0,    0.0, -1.0),   0.5, material_left));
-    world.add(make_shared<Sphere>(Point3(-1.0,    0.0, -1.0), -0.45, material_left));
-    world.add(make_shared<Sphere>(Point3( 1.0,    0.0, -1.0),   0.5, material_right));
+    random_scene(world);
 
     //camera
-    Point3 lookfrom(3,3,2);
-    Point3 lookat(0,0,-1);
-    auto dist_to_focus = (lookfrom-lookat).length();
-    auto aperture = 2.0;
+    Point3 lookfrom(13,2,3);
+    Point3 lookat(0,0,0);
+    auto dist_to_focus = 10.0;
+    auto aperture = 0.1;
 
-    Camera cam(lookfrom, lookat, 20, img.aspect_ratio, 0, dist_to_focus);
+    Camera cam(lookfrom, lookat, 20, img.aspect_ratio, aperture, dist_to_focus);
 
     cam.Draw(world, img);
 
