@@ -1,4 +1,4 @@
-#Basic Raytracer - C++ 11
+# Basic Raytracer - C++ 11
 - - -
 In this first release the focus was on following and understanding the bibliographical
 sources
