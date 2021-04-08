@@ -6,21 +6,21 @@
 
 AABB::AABB(const Point3 &near, const Point3 &far) : near(near), far(far) {}
 
-bool AABB::Hit(Ray ray, double t_min, double t_max) {
+bool AABB::Hit(Ray r, double t_min, double t_max) {
 
     for (int dimension = 0; dimension < 3; dimension++){
         // for each dimension, we evaluate where a hit is registered
-        auto ev_aabb_start = (near[dimension] - ray.origin[dimension]) / ray.direction[dimension];
-        auto ev_aabb_end = (far[dimension] - ray.origin[dimension]) / ray.direction[dimension];
+        auto invD = 1.0f / r.direction[dimension];
+        auto t0 = (near[dimension] - r.origin[dimension]) * invD;
+        auto t1 = (far[dimension] - r.origin[dimension]) * invD;
 
-        //min max check to catch cases where ray is traveling in negative direction
-        auto entry_p = fmin( ev_aabb_start,  ev_aabb_end);
-        auto exit_p = fmax( ev_aabb_start,  ev_aabb_end);
+        //check to catch cases where ray is traveling in negative direction (should hit "far" in entry point)
+        if (invD < 0.0f) std::swap(t0, t1);
 
-        //if there was a hit, we update the valid ray boundaries
+        //if there was a hit in this dimension, we update the valid ray boundaries
         //as to make sure there is an overlapping hit in other dimensions
-        t_max = fmin(t_max, exit_p);
-        t_min = fmax(t_min, entry_p);
+        t_min = t0 > t_min ? t0 : t_min;
+        t_max = t1 < t_max ? t1 : t_max;
 
         // An intersection with the volume occurs if the final t_mx value is greater than the t_mn value.
         // a ray that COMPLETELY misses the bounding boxes will either have equal t_mn tmx or t_mn > t_mx
