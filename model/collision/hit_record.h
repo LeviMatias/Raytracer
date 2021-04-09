@@ -5,7 +5,7 @@
 #ifndef RAYTRACER_HIT_RECORD_H
 #define RAYTRACER_HIT_RECORD_H
 
-#include "../utility/ray.h"
+#include "../../utility/ray.h"
 class Hittable;
 
 struct hit_record {

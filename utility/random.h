@@ -12,6 +12,8 @@ public:
     inline static double NextNumber();
 
     inline static double NextNumber(double a, double b);
+
+    inline static int NextInteger(int a, int b);
 };
 
 double Random::NextNumber() {
@@ -22,6 +24,11 @@ double Random::NextNumber() {
 
 double Random::NextNumber(double a, double b) {
     return Random::NextNumber() * (b - a) + a;
+}
+
+int Random::NextInteger(int a, int b){
+    // for a >= 0
+    return (int)NextNumber(a, b + 1);
 }
 
 

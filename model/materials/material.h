@@ -5,7 +5,7 @@
 #ifndef RAYTRACER_MATERIAL_H
 #define RAYTRACER_MATERIAL_H
 
-#include "../hit_record.h"
+#include "../collision/hit_record.h"
 
 #define DEFAULT_MAT_COLOR Color(0.5, 0.5, 0.5)
 

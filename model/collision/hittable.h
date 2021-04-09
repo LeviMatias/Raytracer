@@ -5,12 +5,12 @@
 #ifndef RAYTRACER_HITTABLE_H
 #define RAYTRACER_HITTABLE_H
 
-#include "../utility/vec3.h"
-#include "../utility/ray.h"
-#include "../utility/defines.h"
-#include "materials/material.h"
+#include "../../utility/vec3.h"
+#include "../../utility/ray.h"
+#include "../../utility/defines.h"
+#include "../materials/material.h"
 #include "hit_record.h"
-#include "geometry/aabb.h"
+#include "aabb.h"
 
 #define DEFAULT_MATERIAL Lambertian
 

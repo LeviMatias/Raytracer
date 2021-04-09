@@ -6,7 +6,7 @@
 #define RAYTRACER_SPHERE_H
 
 
-#include "../hittable.h"
+#include "../collision/hittable.h"
 
 class Sphere: public Hittable {
 public:
