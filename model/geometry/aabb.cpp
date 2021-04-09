@@ -6,6 +6,16 @@
 
 AABB::AABB(const Point3 &near, const Point3 &far) : near(near), far(far) {}
 
+AABB::AABB(const AABB &b0, const AABB &b1) {
+    near = Vec3(fmin(b0.near.x(), b1.near.x()),
+                 fmin(b0.near.y(), b1.near.y()),
+                 fmin(b0.near.z(), b1.near.z()));
+
+    far = Vec3(fmax(b0.far.x(), b1.far.x()),
+               fmax(b0.far.y(), b1.far.y()),
+               fmax(b0.far.z(), b1.far.z()));
+}
+
 bool AABB::Hit(Ray r, double t_min, double t_max) {
 
     for (int dimension = 0; dimension < 3; dimension++){

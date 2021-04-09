@@ -5,11 +5,13 @@
 #include "sphere.h"
 #include "../materials/lambertian.h"
 
-Sphere::Sphere(Point3 center, double r) : Sphere(center, r, make_shared<DEFAULT_MATERIAL>()) {}
+Sphere::Sphere(Point3 center, double r) : Sphere(center, r, make_shared<DEFAULT_MATERIAL>()){}
 
-Sphere::Sphere(Point3 center, double r, shared_ptr<Material> material) : Hittable(material) {
+Sphere::Sphere(Point3 center, double r, shared_ptr<Material> material) : Hittable(material){
     this->center = center;
     radius = r;
+    bounding_box.far = center + Vec3(r,r,r);//upper right
+    bounding_box.near = center - Vec3(r,r,r);//lower left
 }
 
 bool Sphere::Hit(const Ray &r, double t_min, double t_max, hit_record &rec) const {

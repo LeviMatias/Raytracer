@@ -19,3 +19,4 @@ Sources
 
 Peter Shirley - Raytracing Open Source Books
 
+Scratchapixel - Computer graphics lessons for math explanations

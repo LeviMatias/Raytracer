@@ -10,16 +10,20 @@
 #include "../utility/defines.h"
 #include "materials/material.h"
 #include "hit_record.h"
+#include "geometry/aabb.h"
 
 #define DEFAULT_MATERIAL Lambertian
 
 class Hittable {
 public:
     shared_ptr<Material> material;
+    AABB bounding_box;
 
     Hittable()= default;
 
     explicit Hittable(shared_ptr<Material> &mat) : material(mat){};
+
+    Hittable(shared_ptr<Material> &mat, Point3 &n, Point3 &f) : material(mat), bounding_box(n, f){};
 
     virtual bool Hit(const Ray& r, double t_min, double t_max, hit_record& rec) const = 0;
 };

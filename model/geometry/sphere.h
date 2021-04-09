@@ -18,7 +18,6 @@ public:
     Sphere(Point3 center, double r, shared_ptr<Material> material);
 
     bool Hit(const Ray& r, double t_min, double t_max, hit_record& rec) const override;
-
 };
 
 
