@@ -20,7 +20,7 @@ public:
     AABB(const AABB &b0, const AABB &b1);
 
     //tmin, tmax acceptable range to evaluate the ray on
-    bool Hit(Ray ray, double t_min, double t_max);
+    bool Hit(Ray ray, double t_min, double t_max) const;
 
 
 };

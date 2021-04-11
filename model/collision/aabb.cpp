@@ -16,7 +16,7 @@ AABB::AABB(const AABB &b0, const AABB &b1) {
                fmax(b0.far.z(), b1.far.z()));
 }
 
-bool AABB::Hit(Ray r, double t_min, double t_max) {
+bool AABB::Hit(Ray r, double t_min, double t_max) const{
 
     for (int dimension = 0; dimension < 3; dimension++){
         // for each dimension, we evaluate where a hit is registered
