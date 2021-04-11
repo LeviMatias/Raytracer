@@ -23,7 +23,7 @@ void Image::WriteColorAt(Color col, int x, int y) {
     char g = static_cast<char>(255.999 * sqrt(col.y()));
     char b = static_cast<char>(255.999 * sqrt(col.z()));
 
-    int position = IMG_WIDTH * IMG_HEIGHT;
+    int position = IMG_WIDTH * IMG_HEIGHT - 1;
     position -= w * y + x;
     buffer[position].r =  r;
     buffer[position].g =  g;
@@ -32,5 +32,5 @@ void Image::WriteColorAt(Color col, int x, int y) {
 
 void Image::Save() {
     std::string fname = "image.png";
-    stbi_write_jpg(&fname.front(), w, h, 3, &buffer.front(), 100);
+    stbi_write_png(&fname.front(), w, h, 3, &buffer.front(), w*3);
 }

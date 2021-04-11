@@ -13,8 +13,8 @@
 #include "../camera.h"
 #include "../scene.h"
 
-#define SAMPLES 1
-#define MAX_DEPTH 1
+#define SAMPLES 250
+#define MAX_DEPTH 20
 
 #define LIGHT_YELLOW Color(0.9, 0.8, 0.6)
 #define WHITE Color(1.0, 1.0, 1.0)
