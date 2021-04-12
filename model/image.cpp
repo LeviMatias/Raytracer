@@ -9,12 +9,9 @@
 Image::Image(): Image(IMAGE_NAME) {}
 
 Image::Image(const std::string& imgname) : buffer(IMG_WIDTH * IMG_HEIGHT){
-    //out.OpenWrite(imgname);
     this->aspect_ratio = IMG_ASPECT_RATIO;
     this->w = IMG_WIDTH;
     this->h = IMG_HEIGHT;
-
-    // out << "P3\n" << w << " " << this->h << "\n255\n";
 }
 
 void Image::WriteColorAt(Color col, int x, int y) {
@@ -31,6 +28,6 @@ void Image::WriteColorAt(Color col, int x, int y) {
 }
 
 void Image::Save() {
-    std::string fname = "image.png";
+    std::string fname = IMAGE_NAME;
     stbi_write_png(&fname.front(), w, h, 3, &buffer.front(), w*3);
 }

@@ -15,7 +15,7 @@ bool BVH_Node::Hit(const Ray &r, double t_min, double t_max, hit_record &rec) co
 }
 
 BVH_Node::BVH_Node(std::vector<shared_ptr<Hittable>> &src_objects)
-: BVH_Node(src_objects, 0, src_objects.size() - 1) {}
+: BVH_Node(src_objects, 0, src_objects.size()) {}
 
 BVH_Node::BVH_Node(std::vector<shared_ptr<Hittable>> &src_objects, size_t start, size_t end) {
     auto objects = src_objects; // Create a modifiable array of the source scene objects

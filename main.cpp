@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "model/concurrency/safe_stream.h"
+#include "model/infostream/safe_stream.h"
 #include "utility/defines.h"
 
 #include "model/camera.h"

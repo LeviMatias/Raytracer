@@ -10,7 +10,7 @@ a few artistic (and some performance guided) decisions were taken, such as bound
 random reflections (instead of uniformly random) to have stronger shadows and lower number
 of samples per ray.
 
-final render
+the output is a png file "render" like the following
 
 ![Test Image 1](render.png)
 

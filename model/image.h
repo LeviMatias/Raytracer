@@ -6,13 +6,13 @@
 #define RAYTRACER_IMAGE_H
 
 
-#include "concurrency/safe_stream.h"
+#include "infostream/safe_stream.h"
 #include "../utility/vec3.h"
 
 #define IMG_WIDTH 800
 #define IMG_ASPECT_RATIO (16.0/9.0)
 #define IMG_HEIGHT (static_cast<int>(IMG_WIDTH / IMG_ASPECT_RATIO))
-#define IMAGE_NAME "image.ppm"
+#define IMAGE_NAME "render.png"
 
 struct pixel_rgb{
     char r, g, b;
