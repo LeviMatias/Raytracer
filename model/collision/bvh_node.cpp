@@ -9,7 +9,7 @@ bool BVH_Node::Hit(const Ray &r, double t_min, double t_max, hit_record &rec) co
     return false;
 
     bool ll = left && left->Hit(r, t_min, t_max, rec);
-    bool rr = right && right->Hit(r, t_min, t_max, rec);
+    bool rr = right && right->Hit(r, t_min, ll ? rec.t : t_max, rec);
 
     return rr || ll;
 }
@@ -29,7 +29,7 @@ BVH_Node::BVH_Node(std::vector<shared_ptr<Hittable>> &src_objects, size_t start,
     };
 
     if (object_span == 1) {
-        left = objects[start];
+        left = right = objects[start];
     } else if (object_span == 2) {
         if (comparator(objects[start], objects[start+1])) {
             left = objects[start];

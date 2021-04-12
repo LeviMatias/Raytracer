@@ -6,6 +6,7 @@
 #define RAYTRACER_SCENE_H
 
 #include "geometry/sphere.h"
+#include "collision/bvh_node.h"
 #include <memory>
 #include <vector>
 
@@ -14,18 +15,11 @@ using std::make_shared;
 
 class Scene : public Hittable {
 public:
-    std::vector<shared_ptr<Hittable>> objects;
+    BVH_Node root;
 
-    Scene() = default;
-
-    Scene(shared_ptr<Hittable> &object);
-
-    void clear() { objects.clear(); }
-    void add(const shared_ptr<Hittable>& object);
+    Scene(std::vector<shared_ptr<Hittable>> source);
 
     bool Hit(const Ray& r, double t_min, double t_max, hit_record& rec) const override;
-
-
 };
 
 

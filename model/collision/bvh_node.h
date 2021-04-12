@@ -8,6 +8,7 @@
 
 #include "hittable.h"
 
+// todo make into avl tree
 class BVH_Node : public Hittable {
 public:
     shared_ptr<Hittable> left;
