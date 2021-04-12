@@ -12,7 +12,7 @@ class Reflective : public Material {
 public:
     double fussiness;
 
-    inline Vec3 Reflect(const Vec3& v, const Vec3& normal) const;
+    Vec3 Reflect(const Vec3& v, const Vec3& normal) const;
 
     Reflective(Color c) : Material(c), fussiness(DEF_FUSSINESS) {}
 
