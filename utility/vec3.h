@@ -15,8 +15,6 @@ using std::sqrt;
 
 class Vec3 {
 private:
-    double len;
-    double len_sqrd;
 public:
     double e[COORDINATES];
 
@@ -24,8 +22,6 @@ public:
     Vec3(): Vec3(0,0,0) {};
 
     Vec3(double x, double y, double z) : e{x, y, z} {
-        len_sqrd = e[0]*e[0] + e[1]*e[1] + e[2]*e[2];
-        len = sqrt(len_sqrd);
     };
 
     double x() const { return e[0]; }
@@ -33,7 +29,7 @@ public:
     double z() const { return e[2]; }
 
     double length() const {
-        return len;
+        return sqrt(length_squared());
     }
 
     double length_squared() const {
