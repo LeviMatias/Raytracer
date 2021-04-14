@@ -10,13 +10,15 @@ a few artistic (and some performance guided) decisions were taken, such as bound
 random reflections (instead of uniformly random) to have stronger shadows and lower number
 of samples per ray.
 
-the output is a png file "render" like the following
+the output is a file "render.png" like the following
 
 ![Test Image 1](render.png)
 
 - - -
 Sources
 
-Peter Shirley - Raytracing Open Source Books
+ * Peter Shirley - Raytracing Open Source Books
 
-Scratchapixel - Computer graphics lessons for math explanations
+* Scratchapixel - Computer graphics lessons for math explanations
+
+* nothings/stb_image_write.h

@@ -11,9 +11,9 @@ class Lambertian : public Material {
 public:
     Lambertian() :Material(DEFAULT_MAT_COLOR) {}
 
-    explicit Lambertian(Color &color) : Material(color){};
+    explicit Lambertian(Color color) : Material(color){};
 
-    explicit Lambertian(std::shared_ptr<Texture> &t) : Material(t) {}
+    explicit Lambertian(std::shared_ptr<Texture> t) : Material(t) {}
 
     virtual bool Scatter(const Ray& r_in, const hit_record& rec, Color& attenuation, Ray& scattered) const;
 };
