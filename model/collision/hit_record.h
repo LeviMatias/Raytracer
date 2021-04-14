@@ -14,6 +14,10 @@ struct hit_record {
     // ray = origin + direction * t
     // t record the t-value for the hit_record
     double t{};
+    // hit coordinates
+    double u{};
+    double v{};
+
     bool front_face;
     Hittable* hit = nullptr;
 

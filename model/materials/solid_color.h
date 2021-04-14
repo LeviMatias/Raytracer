@@ -9,6 +9,7 @@
 #include "texture.h"
 
 class SolidColor : public Texture {
+public:
     SolidColor() {}
     SolidColor(Color c) : color_value(c) {}
 
