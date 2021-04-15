@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "model/infostream/safe_stream.h"
-#include "utility/defines.h"
+#include "utility/math_macros.h"
 
 #include "model/camera.h"
 #include "model/scene.h"

@@ -1,4 +1,4 @@
-# Basic Raytracer - C++ 11
+#Raytracer - C++ 11
 - - -
 In this first release the focus was on following and understanding the bibliographical
 sources
@@ -7,8 +7,7 @@ The code was implemented following the C++11 standard in a more structured and O
 the books, with added multithread support.
 
 a few artistic (and some performance guided) decisions were taken, such as boundary weighted
-random reflections (instead of uniformly random) to have stronger shadows and lower number
-of samples per ray.
+random reflections (instead of uniformly random) to have stronger shadows.
 
 the output is a file "render.png" like the following
 
@@ -21,4 +20,4 @@ Sources
 
 * Scratchapixel - Computer graphics lessons for math explanations
 
-* nothings/stb_image_write.h
+* nothings/ image libraries to load/save images

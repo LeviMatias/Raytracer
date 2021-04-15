@@ -45,7 +45,7 @@ Color DrawThread::_ray2Color_rec(const Ray &r, int depth) const {
         Color attenuation; //depends on material hit
         if (rec.hit->material->Scatter(r, rec, attenuation, scattered))
             return attenuation * _ray2Color_rec(scattered, ++depth);
-        return Color();
+        return {};
     }
     Vec3 unit_direction = r.direction.unit();
     auto t = 0.5*(unit_direction.y() + 1.0);

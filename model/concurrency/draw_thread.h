@@ -8,7 +8,7 @@
 
 #include "base_thread.h"
 #include "../../utility/random.h"
-#include "../../utility/defines.h"
+#include "../../utility/math_macros.h"
 #include "../image.h"
 #include "../camera.h"
 #include "../scene.h"

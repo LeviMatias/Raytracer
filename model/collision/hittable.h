@@ -7,7 +7,7 @@
 
 #include "../../utility/vec3.h"
 #include "../../utility/ray.h"
-#include "../../utility/defines.h"
+#include "../../utility/math_macros.h"
 #include "../materials/material.h"
 #include "hit_record.h"
 #include "aabb.h"
