@@ -8,8 +8,8 @@
 #include "texture.h"
 
 #define STB_IMAGE_IMPLEMENTATION
-#include "../infostream/stb_image.h"
-#include "../../utility/math_macros.h"
+#include "../../infostream/stb_image.h"
+#include "../../../utility/math_macros.h"
 
 #define BYTES_PER_PIXEL 3
 

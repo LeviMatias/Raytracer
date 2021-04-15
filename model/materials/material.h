@@ -6,8 +6,8 @@
 #define RAYTRACER_MATERIAL_H
 
 #include "../collision/hit_record.h"
-#include "texture.h"
-#include "solid_color.h"
+#include "textures/texture.h"
+#include "textures/solid_color.h"
 
 #define DEFAULT_MAT_COLOR Color(0.5, 0.5, 0.5)
 

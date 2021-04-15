@@ -5,7 +5,7 @@
 #ifndef RAYTRACER_TEXTURE_H
 #define RAYTRACER_TEXTURE_H
 
-#include "../../utility/vec3.h"
+#include "../../../utility/vec3.h"
 
 class Texture {
 public:

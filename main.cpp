@@ -11,7 +11,7 @@
 #include "model/materials/reflective.h"
 #include "model/materials/grass.h"
 #include "model/materials/dielectric.h"
-#include "model/materials/checker_texture.h"
+#include "model/materials/textures/checker_texture.h"
 
 void random_scene(std::vector<shared_ptr<Hittable>> &objects) {
     auto checker = make_shared<CheckerTexture>(Color(0.2, 0.3, 0.1), Color(0.9, 0.9, 0.9));
