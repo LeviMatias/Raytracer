@@ -35,3 +35,7 @@ Color ImageTexture::Value(double u, double v, const Point3 &p) const {
 
     return {color_scale * pixel[0], color_scale*pixel[1], color_scale*pixel[2]};
 }
+
+ImageTexture::~ImageTexture() {
+    stbi_image_free(data);
+}

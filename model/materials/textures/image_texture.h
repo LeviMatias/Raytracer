@@ -11,7 +11,7 @@
 #include "../../infostream/stb_image.h"
 #include "../../../utility/math_macros.h"
 
-#define BYTES_PER_PIXEL 3
+#define BYTES_PER_PIXEL 4 //RGBA
 
 class ImageTexture : public Texture {
 public:
@@ -21,6 +21,8 @@ public:
 
 
     virtual Color Value(double u, double v, const Point3& p) const override;
+
+    ~ImageTexture();
 
 private:
     unsigned char* data;
