@@ -18,6 +18,9 @@ public:
     Sphere(Point3 center, double r, shared_ptr<Material> material);
 
     bool Hit(const Ray& r, double t_min, double t_max, hit_record& rec) const override;
+
+private:
+    static void SetSphereUV(const Point3& point_in_usphere, hit_record& rec);
 };
 
 

@@ -46,8 +46,26 @@ bool Sphere::Hit(const Ray &r, double t_min, double t_max, hit_record &rec) cons
     rec.p = r.At(rec.t);
     //normal pointing outwards from center
     Vec3 outward_normal = (rec.p - center) / radius;
+    //get uv coordinates of p from outward pointing normal
+    SetSphereUV(outward_normal, rec);
+
     rec.set_face_normal(r, outward_normal);
     rec.hit = (Hittable *)this;
 
     return true;
+}
+
+void Sphere::SetSphereUV(const Point3 &point_in_usphere, hit_record &rec) {
+    // p: a given point on the sphere of radius one, centered at the origin.
+    // u: returned value [0,1] of angle around the Y axis from X=-1.
+    // v: returned value [0,1] of angle from Y=-1 to Y=+1.
+    //     <1 0 0> yields <0.50 0.50>       <-1  0  0> yields <0.00 0.50>
+    //     <0 1 0> yields <0.50 1.00>       < 0 -1  0> yields <0.50 0.00>
+    //     <0 0 1> yields <0.25 0.50>       < 0  0 -1> yields <0.75 0.50>
+
+    auto theta = acos(-point_in_usphere.y());
+    auto phi = atan2(-point_in_usphere.z(), point_in_usphere.x()) + PI;
+
+    rec.u = phi / (2*PI);
+    rec.v = theta / PI;
 }
