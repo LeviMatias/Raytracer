@@ -24,12 +24,12 @@ void random_scene(std::vector<shared_ptr<Hittable>> &objects) {
             if ((center - Point3(4, 0.2, 0)).length() > 0.9) {
                 shared_ptr<Material> Sphere_material;
 
-                if (choose_mat < 0.5) {
+                if (choose_mat < 0.8) {
                     // diffuse
                     auto albedo = Color::Random() * Color::Random();
                     Sphere_material = make_shared<Lambertian>(albedo);
                      objects.push_back(make_shared<Sphere>(center, 0.2, Sphere_material));
-                } else if (choose_mat < 0.8) {
+                } else if (choose_mat < 0.95) {
                     // metal
                     auto albedo = Color::Random(0.5, 1);
                     auto fuzz = Random::NextNumber(0, 0.5);
