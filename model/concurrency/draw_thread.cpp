@@ -3,8 +3,6 @@
 //
 
 #include "draw_thread.h"
-#include "../../utility/ray.h"
-#define HORIZONTAL_SCAN
 
 DrawThread::DrawThread(Scene *w, Camera *c, Image *i, int start, int ofs) {
     canvas = i;
@@ -15,23 +13,6 @@ DrawThread::DrawThread(Scene *w, Camera *c, Image *i, int start, int ofs) {
 }
 
 void DrawThread::_run() {
-#ifdef HORIZONTAL_SCAN
-    for (int j = offset_start; j < canvas->h; j += offset){
-        for (int i = 0; i < canvas->w; i++) {
-            Color pixel_color(0, 0, 0);
-            int y = j;
-            int x = i;
-
-            for (int s = 0; s < SAMPLES; ++s) {
-                auto u = (x + Random::NextNumber()) / (canvas->w - 1);
-                auto v = (y + Random::NextNumber()) / (canvas->h - 1);
-                Ray r = cam->GetRay(u, v);
-                pixel_color += _ray2Color(r);
-            }
-            canvas->WriteColorAt(pixel_color / SAMPLES, x, y);
-        }
-    }
-#else
     for (int i = offset_start; i < canvas->h * canvas->w; i += offset){
         Color pixel_color(0, 0, 0);
         int y = static_cast<int>(i / canvas->w);
@@ -45,7 +26,6 @@ void DrawThread::_run() {
         }
         canvas->WriteColorAt(pixel_color / SAMPLES, x, y);
     }
-#endif
 }
 
 Color DrawThread::_ray2Color(const Ray& r) const {

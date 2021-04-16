@@ -37,7 +37,7 @@ void random_scene(std::vector<shared_ptr<Hittable>> &objects) {
                     objects.push_back(make_shared<Sphere>(center, 0.2, Sphere_material));
                 } else {
                     // glass
-                    auto albedo = Color::Random(0.75, 1);
+                    auto albedo = Color(1.0, 1.0, 1.0);
                     Sphere_material = make_shared<Dielectric>(albedo,1.5);
                     objects.push_back(make_shared<Sphere>(center, 0.2, Sphere_material));
                 }
@@ -45,7 +45,7 @@ void random_scene(std::vector<shared_ptr<Hittable>> &objects) {
         }
     }
 
-    auto albedo = Color::Random(0.75, 1);
+    auto albedo = Color(1.0, 1.0, 1.0);
     auto material1 = make_shared<Dielectric>(albedo, 1.5);
     objects.push_back(make_shared<Sphere>(Point3(0, 1, 0), 1.0, material1));
 
