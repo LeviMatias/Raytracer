@@ -36,15 +36,18 @@ Color DrawThread::_ray2Color(const Ray& r) const {
 Color DrawThread::_ray2Color_rec(const Ray &r, int depth) const {
     //gather light recursively
 
-    if (depth >= (int)Random::NextNumber(1, MAX_DEPTH) ) return {};
+    if (depth >= Random::NextInteger(1, MAX_DEPTH)) return {};
 
     hit_record rec;
     if (world->Hit(r, 0.0001, INF, rec)) {
         Ray scattered;
         Color attenuation; //depends on material hit
-        if (rec.hit->material->Scatter(r, rec, attenuation, scattered))
-            return attenuation * _ray2Color_rec(scattered, ++depth);
-        return {};
+        Color emitted = rec.hit->material->Emitted(rec.u, rec.v, rec.p);
+
+        if (rec.hit->material->Scatter(r, rec, attenuation, scattered)) {
+            return emitted + attenuation * _ray2Color_rec(scattered, ++depth);
+        }
+        return emitted;
     }
     Vec3 unit_direction = r.direction.unit();
     auto t = 0.5*(unit_direction.y() + 1.0);

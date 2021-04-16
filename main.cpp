@@ -49,7 +49,7 @@ void random_scene(std::vector<shared_ptr<Hittable>> &objects) {
     auto material1 = make_shared<Dielectric>(albedo, 1.5);
     objects.push_back(make_shared<Sphere>(Point3(0, 1, 0), 1.0, material1));
 
-    auto material2 = make_shared<Lambertian>(Color(0.4, 0.2, 0.1));
+    auto material2 = make_shared<DiffuseLight>(Color(0.4, 0.2, 0.1));
     objects.push_back(make_shared<Sphere>(Point3(-4, 1, 0), 1.0, material2));
 
     auto material3 = make_shared<Metal>(Color(0.7, 0.6, 0.5), 0.0);

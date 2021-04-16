@@ -20,6 +20,8 @@ public:
     explicit Material(std::shared_ptr<Texture> &t) : albedo(t) {}
 
     virtual bool Scatter(const Ray& r_in, const hit_record& rec, Color& attenuation, Ray& scattered) const = 0;
+
+    virtual Color Emitted(double u, double v, const Point3& p) const {return {};};
 };
 
 

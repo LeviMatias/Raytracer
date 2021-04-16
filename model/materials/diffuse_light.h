@@ -10,11 +10,13 @@
 
 class DiffuseLight : public Material {
 public:
+    DiffuseLight(Color c) : Material(c){};
+
     DiffuseLight(std::shared_ptr<Texture> &t) : Material(t){};
 
     bool Scatter(const Ray &r_in, const hit_record &rec, Color &attenuation, Ray &scattered) const override;
 
-    virtual Color Emitted(double u, double v, const Point3& p) const;
+    virtual Color Emitted(double u, double v, const Point3& p) const override;
 };
 
 
