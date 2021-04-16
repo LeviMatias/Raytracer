@@ -14,7 +14,8 @@ struct hit_record {
     // ray = origin + direction * t
     // t record the t-value for the hit_record
     double t{};
-    // hit coordinates
+
+    // hit coordinates surface-relative
     double u{};
     double v{};
 
