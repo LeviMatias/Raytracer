@@ -6,7 +6,7 @@
 
 
 bool Dielectric::Scatter(const Ray &r_in, const hit_record &rec, Color &attenuation, Ray &scattered) const {
-    attenuation = Color(1.0, 1.0, 1.0);
+    attenuation = albedo->Value(0,0, rec.p);
     double refraction_ratio = rec.front_face ? (1.0/refraction_index) : refraction_index;
 
     Vec3 unit_direction = r_in.direction.unit();
