@@ -5,6 +5,7 @@
 #include "image.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "infostream/stb_image_write.h"
+#include "../utility/math_macros.h"
 
 Image::Image(): Image(IMAGE_NAME) {}
 
@@ -16,9 +17,9 @@ Image::Image(const std::string& imgname) : buffer(IMG_WIDTH * IMG_HEIGHT){
 
 void Image::WriteColorAt(Color col, int x, int y) {
     //convert to reg and apply sqrt gamma correction
-    char r = static_cast<char>(255.999 * sqrt(col.x()));
-    char g = static_cast<char>(255.999 * sqrt(col.y()));
-    char b = static_cast<char>(255.999 * sqrt(col.z()));
+    auto r = static_cast<unsigned char>(255.0 * CLAMP(sqrt(col.x()), 0.0, 1) );
+    auto g = static_cast<unsigned char>(255.0 * CLAMP(sqrt(col.y()), 0.0, 1) );
+    auto b = static_cast<unsigned char>(255.0 * CLAMP(sqrt(col.z()), 0.0, 1) );
 
     int position = IMG_WIDTH * IMG_HEIGHT - 1;
     position -= w * y + x;
