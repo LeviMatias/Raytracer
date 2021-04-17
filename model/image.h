@@ -15,7 +15,7 @@
 #define IMAGE_NAME "render.png"
 
 struct pixel_rgb{
-    char r, g, b;
+    unsigned char r, g, b;
 };
 
 
