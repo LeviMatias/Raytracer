@@ -4,11 +4,12 @@
 
 #include "image_texture.h"
 
-ImageTexture::ImageTexture(const char *filename) {
+ImageTexture::ImageTexture(const char *filename) : ImageTexture(filename, Color()) {}
+
+ImageTexture::ImageTexture(const char *filename, Color c) : color(c) {
     auto components_per_pixel = BYTES_PER_PIXEL;
 
-    data = stbi_load(
-            filename, &width, &height, &components_per_pixel, components_per_pixel);
+    data = stbi_load(filename, &width, &height, &components_per_pixel, components_per_pixel);
 
     if (!data) {
         std::cerr << "ERROR: Could not load texture image file '" << filename << "'.\n";

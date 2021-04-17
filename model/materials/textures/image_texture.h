@@ -19,12 +19,14 @@ public:
 
     ImageTexture(const char* filename);
 
+    ImageTexture(const char* filename, Color c);
 
     virtual Color Value(double u, double v, const Point3& p) const override;
 
     ~ImageTexture();
 
 private:
+    Color color;
     unsigned char* data;
     int bytes_per_scanline;
 };
