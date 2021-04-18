@@ -26,6 +26,7 @@ public:
 
     virtual bool Scatter(const Ray& r_in, const hit_record& rec, Color& attenuation, Ray& scattered) const;
 
+    //transmission
     inline Vec3 Refract(const Vec3 &uv, const Vec3 &n, double refraction_index_quotient) const;
 
 private:

@@ -3,6 +3,7 @@
 //
 
 #include "image_texture.h"
+#define BYTES_PER_PIXEL 4 //RGBA
 
 ImageTexture::ImageTexture(const char *filename) : ImageTexture(filename, Color()) {}
 

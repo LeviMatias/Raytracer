@@ -13,8 +13,7 @@ class XYRect : public Hittable {
     XYRect() {}
 
     //alligned over k=z
-    XYRect(double _x0, double _x1, double _y0, double _y1, double _k,
-            std::shared_ptr<Material> &mat);
+    XYRect(double _x0, double _x1, double _y0, double _y1, double _k, std::shared_ptr<Material> &mat);
 
     virtual bool Hit(const Ray& r, double t_min, double t_max, hit_record& rec) const override;
 

@@ -11,8 +11,6 @@
 #include "../../infostream/stb_image.h"
 #include "../../../utility/math_macros.h"
 
-#define BYTES_PER_PIXEL 4 //RGBA
-
 class ImageTexture : public Texture {
 public:
     int height, width;
