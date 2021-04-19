@@ -3,9 +3,10 @@
 //
 
 #include "image.h"
+#include "../utility/math_macros.h"
+
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "infostream/stb_image_write.h"
-#include "../utility/math_macros.h"
 
 Image::Image(): Image(IMAGE_NAME) {}
 

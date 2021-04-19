@@ -1,5 +1,4 @@
 #include <iostream>
-#include "model/infostream/safe_stream.h"
 #include "utility/math_macros.h"
 
 #include "model/camera.h"
@@ -8,7 +7,6 @@
 #include "utility/stopwatch.h"
 #include "model/materials/lambertian.h"
 #include "model/materials/reflective.h"
-#include "model/materials/grass.h"
 #include "model/materials/dielectric.h"
 #include "model/materials/textures/checker_texture.h"
 
