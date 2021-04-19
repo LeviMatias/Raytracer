@@ -10,7 +10,7 @@ Color TiledImageTexture::Value(double u, double v, const Point3 &p) const {
     //todo recv hit_record as param and get hit coordinates from
     // hit->getXYCoordinates(p);
 
-    int x = static_cast<int>(p.x() * width) % width;
+    int x = static_cast<int>((p.x()/2 + p.z()/2) * width) % width;
     int y = static_cast<int>(height - p.y() * height) % height;// flip y
 
     auto pixel = data + y*bytes_per_scanline + x*BYTES_PER_PIXEL;
