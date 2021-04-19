@@ -16,6 +16,12 @@ public:
 
     BVH_Node(std::vector<shared_ptr<Hittable>> &src_objects);
 
+    //copy
+    BVH_Node(const BVH_Node &other);
+
+    //assignment
+    BVH_Node& operator = (const BVH_Node &other);
+
     bool Hit(const Ray& r, double t_min, double t_max, hit_record& rec) const override;
 
     BVH_Node(std::vector<shared_ptr<Hittable>> &src_objects, size_t start, size_t end);

@@ -48,3 +48,15 @@ BVH_Node::BVH_Node(std::vector<shared_ptr<Hittable>> &src_objects, size_t start,
 
     bounding_box = AABB(left->bounding_box, right->bounding_box);
 }
+
+BVH_Node &BVH_Node::operator=(const BVH_Node &other) {
+    left = other.left;
+    right = other.left;
+
+    return *this;
+}
+
+BVH_Node::BVH_Node(const BVH_Node &other) {
+    left = other.left;
+    right = other.left;
+}
