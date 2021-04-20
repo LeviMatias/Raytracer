@@ -5,5 +5,7 @@
 #include "isotropic.h"
 
 bool Isotropic::Scatter(const Ray &r_in, const hit_record &rec, Color &attenuation, Ray &scattered) const {
-    return false;
+    scattered = Ray(rec.p, Vec3::RandomUnit());
+    attenuation = albedo->Value(rec.u, rec.v, rec.p);
+    return true;
 }
