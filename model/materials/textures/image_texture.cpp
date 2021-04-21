@@ -3,11 +3,14 @@
 //
 
 #include "image_texture.h"
-#define BYTES_PER_PIXEL 4 //RGBA
+#define STB_IMAGE_IMPLEMENTATION
+#include "../../infostream/stb_image.h"
 
-ImageTexture::ImageTexture(const char *filename) : ImageTexture(filename, Color()) {}
+ImageTexture::ImageTexture(const char *filename) : ImageTexture(filename, Color(), 0) {}
 
-ImageTexture::ImageTexture(const char *filename, Color c) : color(c) {
+ImageTexture::ImageTexture(const char *filename, Color c) : ImageTexture(filename, c, 0)  {}
+
+ImageTexture::ImageTexture(const char *filename, Color c, double transparency) : color(c) {
     auto components_per_pixel = BYTES_PER_PIXEL;
 
     data = stbi_load(filename, &width, &height, &components_per_pixel, components_per_pixel);
@@ -18,7 +21,9 @@ ImageTexture::ImageTexture(const char *filename, Color c) : color(c) {
     }
 
     bytes_per_scanline = BYTES_PER_PIXEL * width;
+    this->transparency = transparency;
 }
+
 
 Color ImageTexture::Value(double u, double v, const Point3 &p) const {
     if (!data) return {0, 1, 1}; //failed to load

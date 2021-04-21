@@ -10,6 +10,7 @@
 #include "../collision//hittable.h"
 
 class XYRect : public Hittable {
+public:
     XYRect() {}
 
     //alligned over k=z
@@ -17,7 +18,6 @@ class XYRect : public Hittable {
 
     virtual bool Hit(const Ray& r, double t_min, double t_max, hit_record& rec) const override;
 
-public:
     std::shared_ptr<Material> material;
     double x0, x1, y0, y1, k;
 };

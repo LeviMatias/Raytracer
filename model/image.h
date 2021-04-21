@@ -5,7 +5,6 @@
 #ifndef RAYTRACER_IMAGE_H
 #define RAYTRACER_IMAGE_H
 
-
 #include "infostream/safe_stream.h"
 #include "../utility/vec3.h"
 

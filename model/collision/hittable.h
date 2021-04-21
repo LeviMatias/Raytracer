@@ -23,6 +23,8 @@ public:
 
     explicit Hittable(shared_ptr<Material> &mat) : material(mat){};
 
+    explicit Hittable(shared_ptr<Material> mat) : material(mat){};
+
     Hittable(shared_ptr<Material> &mat, Point3 &n, Point3 &f) : material(mat), bounding_box(n, f){};
 
     virtual bool Hit(const Ray& r, double t_min, double t_max, hit_record& rec) const = 0;
