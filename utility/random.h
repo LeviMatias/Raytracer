@@ -17,7 +17,7 @@ public:
 };
 
 double Random::NextNumber() {
-    static std::uniform_real_distribution<double> distribution(0.0, 1.0);
+    static thread_local std::uniform_real_distribution<double> distribution(0.0, 1.0);
     //seed = (int)std::chrono::system_clock::now().time_since_epoch().count()
     static thread_local std::mt19937 generator;
     return distribution(generator);
