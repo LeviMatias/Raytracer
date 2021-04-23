@@ -5,6 +5,8 @@
 #ifndef RAYTRACER_HITTABLE_H
 #define RAYTRACER_HITTABLE_H
 
+#include <utility>
+
 #include "../../utility/vec3.h"
 #include "../../utility/ray.h"
 #include "../../utility/math_macros.h"
@@ -21,9 +23,7 @@ public:
 
     Hittable()= default;
 
-    explicit Hittable(shared_ptr<Material> &mat) : material(mat){};
-
-    explicit Hittable(shared_ptr<Material> mat) : material(mat){};
+    explicit Hittable(shared_ptr<Material> mat) : material(std::move(mat)){};
 
     Hittable(shared_ptr<Material> &mat, Point3 &n, Point3 &f) : material(mat), bounding_box(n, f){};
 
