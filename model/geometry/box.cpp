@@ -25,5 +25,5 @@ Box::Box(Point3 p0, Point3 p1, std::shared_ptr<Material> &m) : Hittable(m) {
 }
 
 bool Box::Hit(const Ray &r, double t_min, double t_max, hit_record &rec) const {
-    return false;
+    return sides->Hit(r, t_min, t_max, rec);
 }

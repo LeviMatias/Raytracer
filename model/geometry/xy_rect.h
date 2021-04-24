@@ -18,7 +18,6 @@ public:
 
     virtual bool Hit(const Ray& r, double t_min, double t_max, hit_record& rec) const override;
 
-    std::shared_ptr<Material> material;
     double x0, x1, y0, y1, k;
 };
 

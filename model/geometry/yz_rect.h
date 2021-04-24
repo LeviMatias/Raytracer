@@ -16,7 +16,6 @@ public:
 
     bool Hit(const Ray& r, double t_min, double t_max, hit_record& rec) const override;
 
-    shared_ptr<Material> material;
     double y0, y1, z0, z1, k;
 };
 

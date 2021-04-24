@@ -5,7 +5,7 @@
 #include "yz_rect.h"
 
 YZRect::YZRect(double _y0, double _y1, double _z0, double _z1, double _k, std::shared_ptr<Material> &mat)
-        : y0(_y0), y1(_y1), z0(_z0), z1(_z1), k(_k), material(mat){
+        : y0(_y0), y1(_y1), z0(_z0), z1(_z1), k(_k), Hittable(mat){
     bounding_box.near = Point3(y0, z0, k-0.0001);
     bounding_box.far = Point3(y1, z1, k+0.0001);
 }

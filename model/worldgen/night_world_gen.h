@@ -5,9 +5,12 @@
 #ifndef RAYTRACER_NIGHT_WORLD_GEN_H
 #define RAYTRACER_NIGHT_WORLD_GEN_H
 
+#include "../scene.h"
+#include "../../utility/perlin.h"
 
 class NightWorldGen {
-
+public:
+    void Generate(std::vector<shared_ptr<Hittable>> &objects);
 };
 
 
