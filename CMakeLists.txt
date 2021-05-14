@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(raytracer)
 set(CMAKE_CXX_FLAGS_RELEASE "/O2")
-set (CMAKE_CXX_FLAGS "")
+set (CMAKE_CXX_FLAGS "-O2 -ffast-math")
 set(CMAKE_CXX_STANDARD 11)
 
 
