@@ -5,7 +5,11 @@
 #include "scene.h"
 
 bool Scene::Hit(const Ray &r, double t_min, double t_max, hit_record &rec) const {
-    return root.Hit(r, t_min, t_max, rec);
+    bool h = false;
+    for (auto &e : *a){
+        h = e->Hit(r, t_min, t_max, rec) || h;
+    }
+    return h;
 }
 
-Scene::Scene(std::vector<shared_ptr<Hittable>> source) : root(source) {}
+Scene::Scene(std::vector<shared_ptr<Hittable>> &source) : root(source), a(&source) {}

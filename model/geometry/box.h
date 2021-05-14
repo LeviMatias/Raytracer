@@ -21,6 +21,7 @@ private:
     Point3 min;
     Point3 max;
     std::shared_ptr<BVH_Node> sides;
+    std::vector<shared_ptr<Hittable>> v;
 };
 
 

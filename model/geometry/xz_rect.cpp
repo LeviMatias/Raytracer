@@ -19,7 +19,7 @@ bool XZRect::Hit(const Ray &r, double t_min, double t_max, hit_record &rec) cons
     if (x < x0 || x > x1 || z < z0 || z > z1)
         return false;
 
-    //where did it hit (relative)?
+    // where did it hit (relative)?
     rec.u = (x-x0)/(x1-x0);
     rec.v = (z-z0)/(z1-z0);
     rec.t = t;

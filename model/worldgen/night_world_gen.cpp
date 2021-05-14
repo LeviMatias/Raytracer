@@ -9,7 +9,6 @@
 #include "../materials/diffuse_light.h"
 
 void NightWorldGen::Generate(std::vector<shared_ptr<Hittable>> &objects) {
-    ;
     std::shared_ptr<Material> ground = std::make_shared<Metal>(Color(153.0/255.0, 0, 0), 0.1);
 
     const int boxes_per_side = 1;
@@ -30,5 +29,5 @@ void NightWorldGen::Generate(std::vector<shared_ptr<Hittable>> &objects) {
     std::shared_ptr<Texture> img = std::make_shared<ImageTexture>("assets/moonTexture.png",
                                                                   Color(3, 1, 1), 0.75);
     std::shared_ptr<Material> mmat = std::make_shared<DiffuseLight>(img);
-    objects.push_back(std::make_shared<Sphere>(Point3(220,280,300), 80, mmat));
+    //objects.push_back(std::make_shared<Sphere>(Point3(220,280,300), 80, mmat));
 }
