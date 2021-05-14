@@ -5,8 +5,7 @@
 #include "bvh_node.h"
 
 bool BVH_Node::Hit(const Ray &r, double t_min, double t_max, hit_record &rec) const {
-    if (!bounding_box.Hit(r, t_min, t_max))
-    return false;
+    if (!bounding_box.Hit(r, t_min, t_max)) return false;
 
     bool ll = left && left->Hit(r, t_min, t_max, rec);
     bool rr = right && right->Hit(r, t_min, ll ? rec.t : t_max, rec);
@@ -29,7 +28,7 @@ BVH_Node::BVH_Node(std::vector<shared_ptr<Hittable>> &src_objects, size_t start,
     };
 
     if (object_span == 1) {
-        left = right = objects[start];
+        right = objects[start];
     } else if (object_span == 2) {
         if (comparator(objects[start], objects[start+1])) {
             left = objects[start];
@@ -46,7 +45,9 @@ BVH_Node::BVH_Node(std::vector<shared_ptr<Hittable>> &src_objects, size_t start,
         right = make_shared<BVH_Node>(objects, mid, end);
     }
 
-    bounding_box = AABB(left->bounding_box, right->bounding_box);
+    auto max = right->bounding_box;
+    auto min = (left) ? left->bounding_box : max;
+    bounding_box = AABB(min, max);
 }
 
 BVH_Node &BVH_Node::operator=(const BVH_Node &other) {
