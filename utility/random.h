@@ -6,6 +6,7 @@
 #define RAYTRACER_RANDOM_H
 
 #include <random>
+#include "perlin.h"
 
 class Random {
 public:
@@ -14,6 +15,8 @@ public:
     inline static double NextNumber(double a, double b);
 
     inline static int NextInteger(int a, int b);
+
+    inline static double PerlinNoise(double a, double b);
 };
 
 double Random::NextNumber() {
@@ -30,6 +33,11 @@ double Random::NextNumber(double a, double b) {
 int Random::NextInteger(int a, int b){
     // for a >= 0
     return (int)NextNumber(a, b + 1);
+}
+
+double Random::PerlinNoise(double a, double b) {
+    auto x  = perlin::noise(a, 0.0, b);
+    return (double)x;
 }
 
 

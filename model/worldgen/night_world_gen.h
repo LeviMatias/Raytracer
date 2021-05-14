@@ -6,7 +6,7 @@
 #define RAYTRACER_NIGHT_WORLD_GEN_H
 
 #include "../scene.h"
-#include "../../utility/perlin.h"
+#include "../../utility/random.h"
 
 class NightWorldGen {
 public:
