@@ -16,8 +16,9 @@ using std::make_shared;
 class Scene : public Hittable {
 public:
     BVH_Node root;
+    std::vector<shared_ptr<Hittable>> *a;
 
-    Scene(std::vector<shared_ptr<Hittable>> source);
+    Scene(std::vector<shared_ptr<Hittable>> &source);
 
     bool Hit(const Ray& r, double t_min, double t_max, hit_record& rec) const override;
 };

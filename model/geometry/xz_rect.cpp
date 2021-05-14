@@ -4,7 +4,7 @@
 
 #include "xz_rect.h"
 XZRect::XZRect(double _x0, double _x1, double _z0, double _z1, double _k, shared_ptr<Material> &mat)
-        : x0(_x0), x1(_x1), z0(_z0), z1(_z1), k(_k), material(mat){
+        : x0(_x0), x1(_x1), z0(_z0), z1(_z1), k(_k), Hittable(mat){
     bounding_box.near = Point3(x0, z0, k-0.0001);
     bounding_box.far = Point3(x1, z1, k+0.0001);
 }
@@ -19,7 +19,7 @@ bool XZRect::Hit(const Ray &r, double t_min, double t_max, hit_record &rec) cons
     if (x < x0 || x > x1 || z < z0 || z > z1)
         return false;
 
-    //where did it hit (relative)?
+    // where did it hit (relative)?
     rec.u = (x-x0)/(x1-x0);
     rec.v = (z-z0)/(z1-z0);
     rec.t = t;

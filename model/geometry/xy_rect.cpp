@@ -4,9 +4,9 @@
 
 #include "xy_rect.h"
 
-XYRect::XYRect(double _x0, double _x1, double _y0, double _y1, double _k, shared_ptr<Material> &mat)
-        : x0(_x0), x1(_x1), y0(_y0), y1(_y1), k(_k), material(mat){
-    bounding_box.near = Point3(x0,y0, k-0.0001);
+XYRect::XYRect(double _x0, double _x1, double _y0, double _y1, double _k, std::shared_ptr<Material> &mat)
+        : x0(_x0), x1(_x1), y0(_y0), y1(_y1), k(_k), Hittable(mat){
+    bounding_box.near = Point3(x0, y0, k-0.0001);
     bounding_box.far = Point3(x1, y1, k+0.0001);
 }
 

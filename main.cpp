@@ -9,6 +9,7 @@
 #include "model/materials/reflective.h"
 #include "model/materials/dielectric.h"
 #include "model/materials/textures/checker_texture.h"
+#include "model/worldgen/night_world_gen.h"
 
 void random_scene(std::vector<shared_ptr<Hittable>> &objects) {
     auto checker = make_shared<CheckerTexture>(Color(0.2, 0.3, 0.1), Color(0.9, 0.9, 0.9));
@@ -63,16 +64,17 @@ int main() {
 
     // World
     std::vector<shared_ptr<Hittable>> objects;
-    random_scene(objects);
+    NightWorldGen g;
+    g.Generate(objects);
     Scene world(objects);
 
     //camera
-    Point3 lookfrom(13,2,3);
-    Point3 lookat(0,0,0);
+    Point3 lookfrom(350, 278, -200);
+    Point3 lookat(278, 278, 0);
     auto dist_to_focus = 10.0;
-    auto aperture = 0.1;
+    auto aperture = 0.01;
 
-    Camera cam(lookfrom, lookat, 20, img.aspect_ratio, aperture, dist_to_focus);
+    Camera cam(lookfrom, lookat, 40, img.aspect_ratio, aperture, dist_to_focus);
 
     cam.Draw(world, img);
 
